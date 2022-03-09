@@ -1,0 +1,34 @@
+﻿@page
+@model AssessmentAssistant.Pages.AcademicProgram.CreateModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Enter a new Academic Program</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AcademicProgram.ProgramTitle" class="control-label"></label>
+                <input asp-for="AcademicProgram.ProgramTitle" class="form-control" />
+                <span asp-validation-for="AcademicProgram.ProgramTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Enter Short Description</label>
+                <textarea rows="5" id="AcademicProgram_ProgramDescription" name="AcademicProgram.ProgramDescription" class="form-control" ></textarea>
+                <span asp-validation-for="AcademicProgram.ProgramDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Select Measurement Period</label>
+                @Html.DropDownListFor(m => m.AcademicProgram.MeasurementPeriod, this.Model.MeasurementPeriods() , "Select Period")
+                <span asp-validation-for="AcademicProgram.MeasurementPeriod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>>
+</div>

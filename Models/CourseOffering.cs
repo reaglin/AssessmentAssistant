@@ -30,7 +30,7 @@ namespace AssessmentAssistant.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Int64 OutcomeMeasureID { get; set; }
+        public Int64 OutcomeMeasureId { get; set; }
         public CourseOutcome CourseOutcome { get; set; } 
         
         public string? AssessmentType { get; set; }

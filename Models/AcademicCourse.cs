@@ -23,7 +23,7 @@ namespace AssessmentAssistant.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Int64? CourseOutcomeID { get; set; } // CourseIdentifier_OutcomeNumber
+        public Int64? CourseOutcomeId { get; set; } // CourseIdentifier_OutcomeNumber
         public int OutcomeNumber { get; set; }
         public string OutcomeStatement { get; set; }
 
