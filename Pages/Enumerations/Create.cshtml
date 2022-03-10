@@ -1,0 +1,41 @@
+﻿@page
+@model AssessmentAssistant.Pages.Enumerations.CreateModel
+@{
+    ViewData["Title"] = "Create";
+}
+<h1>Enter a New Enumeration Value</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <br/>
+            Note that enumerations are used to fill drop down fields in the interface. The identifier
+            can have multiple values. The identifier needs to be entered for each of the values. Example
+            if the identifier is StateAbbreviation. The entries would be;<br/>
+            Enumeration Identifier: StateIdentifier Value: FL<br/>
+            Enumeration Identifier: StateIdentifier Value: GA<br/><br/>
+            <div class="form-group">
+                <label class="control-label">Enter the Enumeration Identifier (Model.Property)</label>
+                <input asp-for="Enumeration.Identifier" class="form-control" />
+                <span asp-validation-for="Enumeration.Identifier" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label">Enter The Enumeration Value</label>
+                <input asp-for="Enumeration.Value" class="form-control" />
+                <span asp-validation-for="Enumeration.Value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Select True or False - Enumeration should be displayed</label>
+               <input asp-for="Enumeration.IsActive" class="form-control" />
+                <span asp-validation-for="Enumeration.IsActive" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>>
+</div>
