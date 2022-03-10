@@ -1,0 +1,44 @@
+﻿@page
+@model AssessmentAssistant.Pages.AcademicProgram.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="AcademicProgram.AcademicProgramId" />
+            <div class="form-group">
+                <label asp-for="AcademicProgram.ProgramTitle" class="control-label"></label>
+                <input asp-for="AcademicProgram.ProgramTitle" class="form-control" />
+                <span asp-validation-for="AcademicProgram.ProgramTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Enter Short Description</label>
+                <textarea rows="5" id="AcademicProgram_ProgramDescription" name="AcademicProgram.ProgramDescription" class="form-control" >
+                    @this.Model.AcademicProgram.ProgramDescription
+                </textarea>
+                <span asp-validation-for="AcademicProgram.ProgramDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Select Measurement Period</label>
+                @Html.DropDownListFor(
+                    m => m.AcademicProgram.MeasurementPeriod, 
+                    this.Model.MeasurementPeriods(),
+                    this.Model.AcademicProgram.MeasurementPeriod
+                )
+                <span asp-validation-for="AcademicProgram.MeasurementPeriod" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

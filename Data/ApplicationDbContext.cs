@@ -33,11 +33,11 @@ namespace AssessmentAssistant.Data
             base.OnModelCreating(builder);
         }
 
-        public IEnumerable<SelectListItem> GetMeasurementPeriods()
+        public IEnumerable<SelectListItem> GetEnumeration(string Identifier)
         {
 
-            IEnumerable < SelectListItem > list = this.Enumerations
-                .Where(s => s.Identifier == "MeasurementPeriod")
+            IEnumerable<SelectListItem> list = this.Enumerations
+                .Where(s => s.Identifier == Identifier)
                 .Select(s => new SelectListItem
                 {
                     Selected = false,
@@ -47,5 +47,20 @@ namespace AssessmentAssistant.Data
 
             return list;
         }
+
+        public IEnumerable<SelectListItem> GetMeasurementPeriods()
+        {
+            return GetEnumeration("MeasurementPeriod");
+        }
+
+        public IEnumerable<SelectListItem> GetTrueFalse()
+        {
+            return  new List<SelectListItem>() {
+                new SelectListItem { Text = "True", Value = "1"},
+                new SelectListItem { Text = "False", Value = "0"}};
+               
+        }
+
+
     }
 }

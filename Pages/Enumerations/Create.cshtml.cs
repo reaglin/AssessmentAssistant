@@ -41,5 +41,10 @@ namespace AssessmentAssistant.Pages.Enumerations
 
             return RedirectToPage("./Index");
         }
+
+        public IEnumerable<SelectListItem> GetTrueFalse()
+        {
+            return _context.GetTrueFalse();
+        }
     }
 }

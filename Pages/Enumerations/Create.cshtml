@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Select True or False - Enumeration should be displayed</label>
-               <input asp-for="Enumeration.IsActive" class="form-control" />
+               @Html.DropDownListFor(m => m.Enumeration.IsActive, this.Model.GetTrueFalse() , "True")
                 <span asp-validation-for="Enumeration.IsActive" class="text-danger"></span>
             </div>
             <br/>
