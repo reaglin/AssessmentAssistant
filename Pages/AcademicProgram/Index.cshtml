@@ -1,0 +1,44 @@
+﻿@page
+@model AssessmentAssistant.Pages.AcademicProgram.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Academic Programs</h1>
+<p>
+    <a href="Index/?v=all">View All</a>
+</p>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<hr/>
+To Edit information about the program click Edit. To add or view courses for the program
+click on Details. 
+<hr/>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AcademicPrograms[0].ProgramTitle)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.AcademicPrograms) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProgramTitle)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.AcademicProgramId">Edit</a>                
+            </td>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.AcademicProgramId">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

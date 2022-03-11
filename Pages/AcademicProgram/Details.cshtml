@@ -1,0 +1,60 @@
+﻿@page
+@model AssessmentAssistant.Pages.AcademicProgram.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Academic Programs</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AcademicProgram.ProgramTitle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AcademicProgram.ProgramDescription)
+        </dd>
+
+
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.AcademicProgram.AcademicProgramId">Edit Academic Program</a>|
+    <a asp-page="./Index">Back to Program List</a><br/>
+
+</div>
+<div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AcademicProgram.AcademicCourses)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+            @if (Model.AcademicProgram.AcademicCourses != null)
+            {
+                @foreach (var item in Model.AcademicCourses)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CourseTitle)
+                        </td>
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@item.AcademicCourseId">Edit</a>                
+                        </td>
+                        <td>
+                            <a asp-page="./Details" asp-route-id="@item.AcademicCourseId">Details</a>
+                        </td>
+                    </tr>
+                }
+            }
+    </tbody>
+</table>
+    <a asp-page="..AcademicCourse/Create"asp-route-id="@Model.AcademicProgram.AcademicProgramId">Add Course to Program</a>
+</div>
