@@ -45,9 +45,9 @@ namespace AssessmentAssistant.Pages.AcademicProgram
             
             // Load the courses
             _context.AcademicCourses.Where(c => c.AcademicProgramId == AcademicProgram.AcademicProgramId).Load();
-            if (AcademicProgram.AcademicCourses != null) 
-            { 
-                foreach(Models.AcademicCourse c in AcademicProgram.AcademicCourses)
+            if (AcademicProgram.AcademicCourses != null)
+            {
+                foreach (Models.AcademicCourse c in AcademicProgram.AcademicCourses)
                 {
                     AcademicCourses.Add(c);
                 }
@@ -60,7 +60,8 @@ namespace AssessmentAssistant.Pages.AcademicProgram
             // Load the outcomes
             _context.ProgramOutcomes.Where(po => po.AcademicProgramId == AcademicProgram.AcademicProgramId).Load();
 
-            if (AcademicProgram.ProgramOutcomes != null) { 
+            if (AcademicProgram.ProgramOutcomes != null)
+            {
                 foreach (Models.ProgramOutcome po in AcademicProgram.ProgramOutcomes)
                 {
                     ProgramOutcomes.Add(po);
