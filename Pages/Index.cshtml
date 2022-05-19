@@ -5,6 +5,48 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to Assessment Assistant</h1>
+</div>
+    <p>The assessment assistant application makes it easy to enter and manage assessment data. The program tracks programs, program outcomes, 
+        courses associated with programs, course outcomes and outcome measures.</p>
+    <p>Program Coordinators are able to enter program data and program outcomes.</p>
+    <p>Faculty (course coordinators can enter course outcomes and measure results for courses along with seeing results of courses</p>
+
+<div>
+    @if(User.Identity.IsAuthenticated) 
+    {
+    <h2>Courses for @User.Identity.Name</h2>
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.courses)
+            </th>
+            <th>View Course Details</th>
+            <th>Edit Course Information</th>
+        </tr>
+    </thead>
+    <tbody>
+            @if (Model.courses != null)
+            {
+                @foreach (var item in Model.courses)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CourseTitle)
+                        </td>
+
+                        <td>
+                            <a asp-page="./AcademicCourses/Details" asp-route-id="@item.AcademicCourseId">Details</a>
+                        </td>
+                                                <td>
+                            <a asp-page="./AcademicCourses/Edit" asp-route-id="@item.AcademicCourseId">Edit</a>                
+                        </td>
+                    </tr>
+                }
+            }
+    </tbody>
+</table>
+    }
+
 </div>

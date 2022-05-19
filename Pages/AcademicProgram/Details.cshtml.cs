@@ -57,7 +57,7 @@ namespace AssessmentAssistant.Pages.AcademicProgram
             // https://docs.microsoft.com/en-us/aspnet/core/data/ef-rp/read-related-data?view=aspnetcore-6.0&tabs=visual-studio
             ProgramOutcomes = new List<AssessmentAssistant.Models.ProgramOutcome>();
 
-            // Load the outcomes
+            // Load the outcomes for the academic program
             _context.ProgramOutcomes.Where(po => po.AcademicProgramId == AcademicProgram.AcademicProgramId).Load();
 
             if (AcademicProgram.ProgramOutcomes != null)

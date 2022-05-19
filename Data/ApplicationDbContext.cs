@@ -35,6 +35,7 @@ namespace AssessmentAssistant.Data
 
         public IEnumerable<SelectListItem> GetEnumeration(string Identifier)
         {
+            if (this.Enumerations == null) { return Enumerable.Empty<SelectListItem>(); }
 
             IEnumerable<SelectListItem> list = this.Enumerations
                 .Where(s => s.Identifier == Identifier)
@@ -59,6 +60,16 @@ namespace AssessmentAssistant.Data
                 new SelectListItem { Text = "True", Value = "1"},
                 new SelectListItem { Text = "False", Value = "0"}};
                
+        }
+
+        public IEnumerable<AcademicCourse> AcademicCoursesForUser(string user)
+        {
+            if (this.AcademicCourses == null) { return new List<AcademicCourse>(); }
+
+            IEnumerable<AcademicCourse> list = this.AcademicCourses
+                .Where(s => s.CourseCoordinatorID == user);
+
+            return list;
         }
 
 

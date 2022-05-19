@@ -12,6 +12,7 @@ namespace AssessmentAssistant.Models
         [Display (Name="Program Title")]
         public string ProgramTitle { get; set; }
 
+        [Display(Name = "Program Description")]
         public string? ProgramDescription { get; set; }
 
         public List<ProgramOutcome>? ProgramOutcomes { get; set; }  // 1:n with ProgramOutcomes
@@ -25,7 +26,11 @@ namespace AssessmentAssistant.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Int64 ProgramOutcomeId { get; set; }
+
+        [Display(Name = "Outcome Number")]
         public int OutcomeNumber { get; set; }
+
+        [Display(Name = "Outcome Statement")]
         public string OutcomeStatement { get; set; }
         
         public Int64 AcademicProgramId { get; set; }  // n:1 with AcademicProgram

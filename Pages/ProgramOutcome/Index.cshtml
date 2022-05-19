@@ -1,0 +1,55 @@
+﻿@page
+@model AssessmentAssistant.Pages.ProgramOutcome.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Program Outcomes for @Model.ProgramOutcome[0].AcademicProgram.ProgramTitle</h1>
+
+<p>
+    <a asp-page="Create">Create New Program Outcome</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProgramOutcome[0].OutcomeNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProgramOutcome[0].OutcomeStatement)
+            </th>
+@*            <th>
+                @Html.DisplayNameFor(model => model.ProgramOutcome[0].AcademicProgram)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.ProgramOutcome[0].MeasurementPeriod)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ProgramOutcome) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OutcomeNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OutcomeStatement)
+            </td>
+@*            <td>
+                @Html.DisplayFor(modelItem => item.AcademicProgram.AcademicProgramId)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.MeasurementPeriod)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ProgramOutcomeId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ProgramOutcomeId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ProgramOutcomeId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -11,7 +11,7 @@ namespace AssessmentAssistant.Models
         public Int64? AcademicCourseId { get; set; }
         public string CourseTitle { get; set; } 
         public string? CourseDescription { get; set; }   
-        public string CourseCoordinatorID { get; set; }
+        public string? CourseCoordinatorID { get; set; }
         public List<CourseOutcome> CourseOutcomes { get; set; }  // 1:n relationship with Course Outcomes
 
         public Int64 AcademicProgramId { get; set; } // n:1 relationship with AcademicProgram
