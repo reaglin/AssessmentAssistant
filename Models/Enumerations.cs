@@ -5,6 +5,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AssessmentAssistant.Models
 {
+    public class MeasurementPeriods
+    {
+        [Key]
+        [Display(Name = "MeasurementPeriod")]
+        public string MeasurementPeriod { get; set; }
+    }
+
     public class Enumerations
     {
         [Key]

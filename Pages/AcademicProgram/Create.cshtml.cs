@@ -13,6 +13,8 @@ namespace AssessmentAssistant.Pages.AcademicProgram
     public class CreateModel : PageModel
     {
         public readonly AssessmentAssistant.Data.ApplicationDbContext _context;
+
+        public List<SelectListItem> MeasurementPeriodList { get; set; }
         public CreateModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
             _context = context;
@@ -20,6 +22,8 @@ namespace AssessmentAssistant.Pages.AcademicProgram
 
         public IActionResult OnGet()
         {
+            MeasurementPeriodList = _context.GetMeasurementPeriods();
+
             return Page();
         }
 
@@ -28,6 +32,7 @@ namespace AssessmentAssistant.Pages.AcademicProgram
 
         public async Task<IActionResult> OnPostAsync()
         {
+
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -43,9 +48,12 @@ namespace AssessmentAssistant.Pages.AcademicProgram
             return RedirectToPage("./Index");
         }
 
-        public IEnumerable<SelectListItem> MeasurementPeriods()
+        public string UserId()
         {
-            return _context.GetMeasurementPeriods();
+            if (User.Identity == null) return "";
+            string userName = User.Identity.Name;
+            if (userName != null) return userName;
+            return "";
         }
     }
 }

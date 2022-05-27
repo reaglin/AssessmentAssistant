@@ -1,6 +1,61 @@
 ﻿@page
 @model AssessmentAssistant.Pages.AcademicCourse.CreateModel
+
 @{
     ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
 }
-Create
+
+<h1>Create a New Course</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AcademicCourse.CourseTitle" class="control-label"></label>
+                <input asp-for="AcademicCourse.CourseTitle" class="form-control" />
+                <span asp-validation-for="AcademicCourse.CourseTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AcademicCourse.CourseDescription" class="control-label"></label>
+                <input asp-for="AcademicCourse.CourseDescription" class="form-control" />
+                <span asp-validation-for="AcademicCourse.CourseDescription" class="text-danger"></span>
+            </div>
+            <hr/>
+            <h4>Information for Course Assessment</h4>
+            <div class="form-group">
+                Course Coordinator: 
+                <select asp-for="AcademicCourse.CourseCoordinatorID" asp-items="@Model.ApplicationUsersList"></select>               
+                <span asp-validation-for="AcademicCourse.CourseCoordinatorID" class="text-danger"></span>
+            </div><br/>
+            <div class="form-group">
+                Academic Program:
+                <select asp-for="AcademicCourse.AcademicProgram" asp-items="@Model.AcademicProgramsList"></select>  
+            </div><br/>
+            <div class="form-group">
+                Measurement Period:    
+                <select asp-for="AcademicCourse.MeasurementPeriod" asp-items="@Model.MeasurementPeriodList"></select>
+                <span asp-validation-for="AcademicCourse.MeasurementPeriod" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <input asp-for="AcademicCourse.EnteredByUserName" value= "@Model.UserId()"  class="form-control" />
+            </div>
+            <div class="form-group" hidden>
+                <input asp-for="AcademicCourse.RecordOwnerUserName" value= "@Model.UserId()" class="form-control" />
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

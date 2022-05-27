@@ -4,6 +4,7 @@ using AssessmentAssistant.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AssessmentAssistant.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220526204351_Users and Measurement")]
+    partial class UsersandMeasurement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,12 +46,15 @@ namespace AssessmentAssistant.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EnteredByUserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MeasurementPeriod")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RecordOwnerUserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AcademicCourseId");
@@ -68,9 +73,11 @@ namespace AssessmentAssistant.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("AcademicProgramId"), 1L, 1);
 
                     b.Property<string>("EnteredByUserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MeasurementPeriod")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProgramDescription")
@@ -81,6 +88,7 @@ namespace AssessmentAssistant.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RecordOwnerUserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AcademicProgramId");
@@ -171,12 +179,14 @@ namespace AssessmentAssistant.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("EnteredByUserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Instructor")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MeasurementPeriod")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Number_A")
@@ -198,6 +208,7 @@ namespace AssessmentAssistant.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("RecordOwnerUserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SectionNumber")
@@ -221,13 +232,15 @@ namespace AssessmentAssistant.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("CourseOutcomeId"), 1L, 1);
 
-                    b.Property<long>("AcademicCourseId")
+                    b.Property<long?>("AcademicCourseId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("EnteredByUserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MeasurementPeriod")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OutcomeLevel")
@@ -244,6 +257,7 @@ namespace AssessmentAssistant.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("RecordOwnerUserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CourseOutcomeId");
@@ -308,9 +322,11 @@ namespace AssessmentAssistant.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("EnteredByUserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MeasurementPeriod")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MeasurementStatement")
@@ -323,6 +339,7 @@ namespace AssessmentAssistant.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("RecordOwnerUserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ThresholdValue")
@@ -349,9 +366,11 @@ namespace AssessmentAssistant.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("EnteredByUserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MeasurementPeriod")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OutcomeNumber")
@@ -362,6 +381,7 @@ namespace AssessmentAssistant.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RecordOwnerUserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProgramOutcomeId");
@@ -534,9 +554,7 @@ namespace AssessmentAssistant.Data.Migrations
                 {
                     b.HasOne("AssessmentAssistant.Models.AcademicCourse", "AcademicCourse")
                         .WithMany("CourseOutcomes")
-                        .HasForeignKey("AcademicCourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AcademicCourseId");
 
                     b.Navigation("AcademicCourse");
                 });

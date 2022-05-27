@@ -1,0 +1,66 @@
+﻿@page
+@model AssessmentAssistant.Pages.AcademicCourse.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>AcademicCourse</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="AcademicCourse.AcademicCourseId" />
+            <div class="form-group">
+                <label asp-for="AcademicCourse.CourseTitle" class="control-label"></label>
+                <input asp-for="AcademicCourse.CourseTitle" class="form-control" />
+                <span asp-validation-for="AcademicCourse.CourseTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AcademicCourse.CourseDescription" class="control-label"></label>
+                <input asp-for="AcademicCourse.CourseDescription" class="form-control" />
+                <span asp-validation-for="AcademicCourse.CourseDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AcademicCourse.CourseCoordinatorID" class="control-label"></label>
+                <input asp-for="AcademicCourse.CourseCoordinatorID" class="form-control" />
+                <span asp-validation-for="AcademicCourse.CourseCoordinatorID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AcademicCourse.AcademicProgramId" class="control-label"></label>
+                <select asp-for="AcademicCourse.AcademicProgramId" class="form-control" asp-items="ViewBag.AcademicProgramId"></select>
+                <span asp-validation-for="AcademicCourse.AcademicProgramId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AcademicCourse.MeasurementPeriod" class="control-label"></label>
+                <input asp-for="AcademicCourse.MeasurementPeriod" class="form-control" />
+                <span asp-validation-for="AcademicCourse.MeasurementPeriod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AcademicCourse.EnteredByUserName" class="control-label"></label>
+                <input asp-for="AcademicCourse.EnteredByUserName" class="form-control" />
+                <span asp-validation-for="AcademicCourse.EnteredByUserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AcademicCourse.RecordOwnerUserName" class="control-label"></label>
+                <input asp-for="AcademicCourse.RecordOwnerUserName" class="form-control" />
+                <span asp-validation-for="AcademicCourse.RecordOwnerUserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

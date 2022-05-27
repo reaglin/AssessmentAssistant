@@ -9,13 +9,20 @@ namespace AssessmentAssistant.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Int64? AcademicCourseId { get; set; }
-        public string CourseTitle { get; set; } 
-        public string? CourseDescription { get; set; }   
-        public string? CourseCoordinatorID { get; set; }
-        public List<CourseOutcome> CourseOutcomes { get; set; }  // 1:n relationship with Course Outcomes
 
+        [Display(Name = "Course Designation (EGN1234)")]
+        public string CourseTitle { get; set; }
+
+        [Display(Name = "Course Title")]
+        public string? CourseDescription { get; set; }
+
+        [Display(Name = "Course Coordinator Email")]
+        public string? CourseCoordinatorID { get; set; }
+        public List<CourseOutcome>? CourseOutcomes { get; set; }  // 1:n relationship with Course Outcomes
+
+        [Display(Name = "Academic Program ID")]
         public Int64 AcademicProgramId { get; set; } // n:1 relationship with AcademicProgram
-        public AcademicProgram AcademicProgram { get; set; }    
+        public AcademicProgram? AcademicProgram { get; set; }    
 
     }
 
@@ -24,13 +31,20 @@ namespace AssessmentAssistant.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Int64? CourseOutcomeId { get; set; } // CourseIdentifier_OutcomeNumber
+
+        [Display(Name = "Course Outcome Number")]
         public int OutcomeNumber { get; set; }
+
+        [Display(Name = "Course Outcome Statement")]
         public string OutcomeStatement { get; set; }
 
+        [Display(Name = "Associated Program Outcome Number")]
         public int? ProgramOutcomeNumber { get; set; }
+
+
         public string? OutcomeLevel { get; set; }
 
-        public Int64? AcademicCourseId { get; set; } // n:1 relationship with AcademicCourse
+        public Int64 AcademicCourseId { get; set; } // n:1 relationship with AcademicCourse
         public AcademicCourse? AcademicCourse { get; set; }
 
     }

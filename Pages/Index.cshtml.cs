@@ -26,14 +26,21 @@ namespace AssessmentAssistant.Pages
 
         public IEnumerable<AssessmentAssistant.Models.AcademicCourse> courses { get; set; }
 
+        public IEnumerable<AssessmentAssistant.Models.AcademicProgram> programs { get; set; }
 
         public void OnGet()
         {
+            // Displayed here (upon login) - will be any programs or course that the user
+            // is responsible for. 
             if (User.Identity == null) { return; }
             if (!User.Identity.IsAuthenticated) { return; }
 
             courses = _context.AcademicCourses
                 .Where(c => c.CourseCoordinatorID == User.Identity.Name)
+                .ToList();
+
+            programs = _context.AcademicPrograms
+                .Where(c => c.RecordOwnerUserName == User.Identity.Name)
                 .ToList();
 
         }
