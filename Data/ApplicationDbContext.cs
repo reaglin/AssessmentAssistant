@@ -137,6 +137,23 @@ namespace AssessmentAssistant.Data
             return ApplicationUsersList;
         }
 
+        public string GetAcademicProgramTitle(int AcademicProgramId)
+        {
+            List<AcademicProgram> list = this.AcademicPrograms
+                .Where(s => s.AcademicProgramId == AcademicProgramId)
+                .ToList();
+
+            if (list.Count > 0)
+            {
+                return list.FirstOrDefault().ProgramTitle; 
+            }
+            else
+            {
+                return String.Empty;
+            }
+
+        }
+
             public IEnumerable<SelectListItem> GetTrueFalse()
         {
             return  new List<SelectListItem>() {

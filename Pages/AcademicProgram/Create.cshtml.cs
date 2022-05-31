@@ -13,7 +13,7 @@ namespace AssessmentAssistant.Pages.AcademicProgram
     public class CreateModel : PageModel
     {
         public readonly AssessmentAssistant.Data.ApplicationDbContext _context;
-
+        
         public List<SelectListItem> MeasurementPeriodList { get; set; }
         public CreateModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {

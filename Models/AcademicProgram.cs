@@ -34,7 +34,7 @@ namespace AssessmentAssistant.Models
         public string OutcomeStatement { get; set; }
         
         public Int64 AcademicProgramId { get; set; }  // n:1 with AcademicProgram
-        public AcademicProgram AcademicProgram { get; set; }
+        public AcademicProgram? AcademicProgram { get; set; }
 
 
     }
