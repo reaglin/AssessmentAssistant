@@ -15,6 +15,7 @@ namespace AssessmentAssistant.Pages.AcademicProgram
     public class EditModel : PageModel
     {
         public readonly AssessmentAssistant.Data.ApplicationDbContext _context;
+        public List<SelectListItem> MeasurementPeriodList { get; set; }
         public EditModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
             _context = context;
@@ -30,7 +31,8 @@ namespace AssessmentAssistant.Pages.AcademicProgram
             }
 
             AcademicProgram = await _context.AcademicPrograms.FirstOrDefaultAsync(m => m.AcademicProgramId == id);
-            
+
+            MeasurementPeriodList = _context.GetMeasurementPeriods();
 
             if (AcademicProgram == null)
             {

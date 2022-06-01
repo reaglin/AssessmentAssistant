@@ -8,7 +8,7 @@
 
 <h1>Edit</h1>
 
-<h4>AcademicCourse</h4>
+<h4>Academic Course</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -32,24 +32,25 @@
             </div>
             <div class="form-group">
                 <label asp-for="AcademicCourse.AcademicProgramId" class="control-label"></label>
-                <select asp-for="AcademicCourse.AcademicProgramId" class="form-control" asp-items="ViewBag.AcademicProgramId"></select>
+                <select asp-for="AcademicCourse.AcademicProgramId" class="form-control" asp-items="Model.AcademicProgramList"></select>
                 <span asp-validation-for="AcademicCourse.AcademicProgramId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="AcademicCourse.MeasurementPeriod" class="control-label"></label>
-                <input asp-for="AcademicCourse.MeasurementPeriod" class="form-control" />
+                <input asp-for="AcademicCourse.MeasurementPeriod" class="form-control"  />
                 <span asp-validation-for="AcademicCourse.MeasurementPeriod" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="AcademicCourse.EnteredByUserName" class="control-label"></label>
-                <input asp-for="AcademicCourse.EnteredByUserName" class="form-control" />
+                <input asp-for="AcademicCourse.EnteredByUserName" class="form-control"  />
                 <span asp-validation-for="AcademicCourse.EnteredByUserName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="AcademicCourse.RecordOwnerUserName" class="control-label"></label>
-                <input asp-for="AcademicCourse.RecordOwnerUserName" class="form-control" />
+                <input asp-for="AcademicCourse.RecordOwnerUserName" class="form-control"  />
                 <span asp-validation-for="AcademicCourse.RecordOwnerUserName" class="text-danger"></span>
             </div>
+            <br/>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

@@ -41,9 +41,9 @@ namespace AssessmentAssistant.Models
         [Display(Name = "Associated Program Outcome Number")]
         public int? ProgramOutcomeNumber { get; set; }
 
-
         public string? OutcomeLevel { get; set; }
 
+        [Display(Name = "Associated Course")]
         public Int64 AcademicCourseId { get; set; } // n:1 relationship with AcademicCourse
         public AcademicCourse? AcademicCourse { get; set; }
 

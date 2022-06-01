@@ -1,0 +1,69 @@
+﻿@page
+@model AssessmentAssistant.Pages.CourseOutcome.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>CourseOutcome</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CourseOutcome.OutcomeNumber" class="control-label"></label>
+                <input asp-for="CourseOutcome.OutcomeNumber" class="form-control" />
+                <span asp-validation-for="CourseOutcome.OutcomeNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseOutcome.OutcomeStatement" class="control-label"></label>
+                <textarea asp-for="CourseOutcome.OutcomeStatement" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="CourseOutcome.OutcomeStatement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseOutcome.ProgramOutcomeNumber" class="control-label"></label>
+                <input asp-for="CourseOutcome.ProgramOutcomeNumber" class="form-control" />
+                <span asp-validation-for="CourseOutcome.ProgramOutcomeNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="CourseOutcome.OutcomeLevel" class="control-label"></label>
+                <input asp-for="CourseOutcome.OutcomeLevel" class="form-control" />
+                <span asp-validation-for="CourseOutcome.OutcomeLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseOutcome.AcademicCourseId" class="control-label"></label>
+                <select asp-for="CourseOutcome.AcademicCourseId" class ="form-control" asp-items="ViewBag.AcademicCourseId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseOutcome.MeasurementPeriod" class="control-label"></label>
+                <input asp-for="CourseOutcome.MeasurementPeriod" class="form-control" value="@Model.MeasurementPeriod()" />
+                <span asp-validation-for="CourseOutcome.MeasurementPeriod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseOutcome.EnteredByUserName" class="control-label"></label>
+                <input asp-for="CourseOutcome.EnteredByUserName" class="form-control"  value="@Model.UserId()" />
+                <span asp-validation-for="CourseOutcome.EnteredByUserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseOutcome.RecordOwnerUserName" class="control-label"></label>
+                <input asp-for="CourseOutcome.RecordOwnerUserName" class="form-control"  value="@Model.UserId()" />
+                <span asp-validation-for="CourseOutcome.RecordOwnerUserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

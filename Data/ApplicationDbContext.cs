@@ -92,6 +92,16 @@ namespace AssessmentAssistant.Data
             return MeasurementPeriodList;
         }
 
+        public string GetmeasurementPeriodForCourse(long? id)
+        {
+            if (id == null) return string.Empty;
+
+            return this.AcademicCourses
+                .Where(ac => ac.AcademicCourseId == id)
+                .First()
+                .MeasurementPeriod; 
+        }
+
         public List<SelectListItem> GetAcademicPrograms()
         {
             /*
@@ -136,6 +146,19 @@ namespace AssessmentAssistant.Data
 
             return ApplicationUsersList;
         }
+
+        public List<CourseOutcome> GetCourseOutcomes(long? id)
+        {
+            if (id == null) return new List<CourseOutcome>();
+
+            List<CourseOutcome> outcomes = this.CourseOutcomes
+                .Where(s => s.CourseOutcomeId == id)
+                .ToList();
+
+            return outcomes;
+        }
+
+       
 
         public string GetAcademicProgramTitle(int AcademicProgramId)
         {

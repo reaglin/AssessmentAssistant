@@ -49,40 +49,10 @@
         </table>
         <br/>
         <a asp-page="./AcademicCourse/Index">Courses Main Page</a>
-        <br/>
-        <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.programs)
-                </th>
-                <th>View Program Details</th>
-                <th>Edit Program Information</th>
-            </tr>
-            </thead>
-            <tbody>
-            @if (Model.programs != null)
-            {
-                @foreach (var item in Model.programs)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProgramTitle)
-                        </td>
+        <br/><br/>
 
-                        <td>
-                            <a asp-page="./AcademicProgram/Details" asp-route-id="@item.AcademicProgramId">Details</a>
-                        </td>
-                        <td>
-                            <a asp-page="./AcademicProgram/Index" asp-route-id="@item.AcademicProgramId">Edit Program and Outcomes</a>                
-                        </td>
-                    </tr>
-                }
-            }
-
-            </tbody>
-            </table>
-            <a href="./AcademicProgram/Index">Programs Main Page (Manage, Edit Programs - Enter Outcomes or Courses for Programs)</a>
+            <a href="./AcademicProgram/Index">Academic Programs Main Page </a><br/>
+            <p>(Manage, Edit Programs - Enter Program Outcomes or Assign Courses to Programs)</p>
 
     }
 

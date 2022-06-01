@@ -9,37 +9,34 @@ using Microsoft.EntityFrameworkCore;
 using AssessmentAssistant.Data;
 using AssessmentAssistant.Models;
 
-namespace AssessmentAssistant.Pages.AcademicCourse
+namespace AssessmentAssistant.Pages.CourseOutcome
 {
     public class EditModel : PageModel
     {
         private readonly AssessmentAssistant.Data.ApplicationDbContext _context;
 
-        public List<SelectListItem> AcademicProgramList { get; set; }
         public EditModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public AssessmentAssistant.Models.AcademicCourse AcademicCourse { get; set; } = default!;
+        public AssessmentAssistant.Models.CourseOutcome CourseOutcome { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(long? id)
         {
-            if (id == null || _context.AcademicCourses == null)
+            if (id == null || _context.CourseOutcomes == null)
             {
                 return NotFound();
             }
 
-            var academiccourse =  await _context.AcademicCourses.FirstOrDefaultAsync(m => m.AcademicCourseId == id);
-            if (academiccourse == null)
+            var courseoutcome =  await _context.CourseOutcomes.FirstOrDefaultAsync(m => m.CourseOutcomeId == id);
+            if (courseoutcome == null)
             {
                 return NotFound();
             }
-            AcademicProgramList = _context.GetAcademicPrograms();
-
-            AcademicCourse = academiccourse;
-           ViewData["AcademicProgramId"] = new SelectList(_context.AcademicPrograms, "AcademicProgramId", "AcademicProgramId");
+            CourseOutcome = courseoutcome;
+           ViewData["AcademicCourseId"] = new SelectList(_context.AcademicCourses, "AcademicCourseId", "AcademicCourseId");
             return Page();
         }
 
@@ -52,7 +49,7 @@ namespace AssessmentAssistant.Pages.AcademicCourse
                 return Page();
             }
 
-            _context.Attach(AcademicCourse).State = EntityState.Modified;
+            _context.Attach(CourseOutcome).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +57,7 @@ namespace AssessmentAssistant.Pages.AcademicCourse
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AcademicCourseExists(AcademicCourse.AcademicCourseId))
+                if (!CourseOutcomeExists(CourseOutcome.CourseOutcomeId))
                 {
                     return NotFound();
                 }
@@ -73,9 +70,9 @@ namespace AssessmentAssistant.Pages.AcademicCourse
             return RedirectToPage("./Index");
         }
 
-        private bool AcademicCourseExists(long? id)
+        private bool CourseOutcomeExists(long? id)
         {
-          return (_context.AcademicCourses?.Any(e => e.AcademicCourseId == id)).GetValueOrDefault();
+          return (_context.CourseOutcomes?.Any(e => e.CourseOutcomeId == id)).GetValueOrDefault();
         }
     }
 }
