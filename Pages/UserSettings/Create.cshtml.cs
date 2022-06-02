@@ -8,15 +8,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using AssessmentAssistant.Data;
 using AssessmentAssistant.Models;
 
-namespace AssessmentAssistant.Pages.AcademicCourse
+namespace AssessmentAssistant.Pages.UserSettings
 {
     public class CreateModel : AAPageModel
     {
 
-        // Define for any drop down items in interface
-        public List<SelectListItem> ApplicationUsersList { get; set; }
-        public List<SelectListItem> AcademicProgramsList { get; set; }
         public List<SelectListItem> MeasurementPeriodList { get; set; }
+
+        public List<SelectListItem> AcademicProgramsList { get; set; }
 
         public CreateModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
@@ -25,37 +24,30 @@ namespace AssessmentAssistant.Pages.AcademicCourse
 
         public IActionResult OnGet()
         {
-            if (!Validate()) return RedirectToPage("../Index");
-
-            ViewData["AcademicProgramId"] = new SelectList(_context.AcademicPrograms, "AcademicProgramId", "AcademicProgramId");
-
-            // Fill in for drop down items in list (from database) 
-            ApplicationUsersList = _context.GetApplicationUsers(); 
-
-            AcademicProgramsList = _context.GetAcademicPrograms();            
-
             MeasurementPeriodList = _context.GetMeasurementPeriods();
+
+            AcademicProgramsList = _context.GetAcademicPrograms(); 
 
             return Page();
         }
 
         [BindProperty]
-        public AssessmentAssistant.Models.AcademicCourse AcademicCourse { get; set; } = default!;
+        public AssessmentAssistant.Models.UserSettings UserSettings { get; set; } = default!;
+
+       
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid || _context.AcademicCourses == null || AcademicCourse == null)
+          if (!ModelState.IsValid || _context.UserSettings == null || UserSettings == null)
             {
                 return Page();
             }
 
-
-            _context.AcademicCourses.Add(AcademicCourse);
+            _context.UserSettings.Add(UserSettings);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("../Index");
         }
-
     }
 }

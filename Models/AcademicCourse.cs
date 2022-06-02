@@ -10,7 +10,7 @@ namespace AssessmentAssistant.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Int64? AcademicCourseId { get; set; }
 
-        [Display(Name = "Course Designation (EGN1234)")]
+        [Display(Name = "Course (EGN1234)")]
         public string CourseTitle { get; set; }
 
         [Display(Name = "Course Title")]

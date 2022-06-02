@@ -24,7 +24,7 @@
             <hr/>
             <div class="form-group">
                 <label class="control-label">Select Measurement Period:</label>
-                <select asp-for="AcademicProgram.MeasurementPeriod" asp-items="@Model.MeasurementPeriodList"></select>
+                <input asp-for="AcademicProgram.MeasurementPeriod" value="@Model.MeasurementPeriod()" class="form-control" />
                 <span asp-validation-for="AcademicProgram.MeasurementPeriod" class="text-danger"></span>
             </div>
             <div class="form-group" hidden>            

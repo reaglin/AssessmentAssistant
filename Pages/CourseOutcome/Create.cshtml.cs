@@ -11,9 +11,9 @@ using AssessmentAssistant.Models;
 
 namespace AssessmentAssistant.Pages.CourseOutcome
 {
-    public class CreateModel : PageModel
+    public class CreateModel : AAPageModel
     {
-        private readonly AssessmentAssistant.Data.ApplicationDbContext _context;
+
 
         public List<SelectListItem> ApplicationUsersList { get; set; }
 
@@ -42,8 +42,6 @@ namespace AssessmentAssistant.Pages.CourseOutcome
 
             AcademicProgramsList = _context.GetAcademicPrograms();
 
-            
-
             return Page();
         }
 
@@ -63,20 +61,6 @@ namespace AssessmentAssistant.Pages.CourseOutcome
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
-        }
-
-        public string UserId()
-        {
-            if (User.Identity == null) return "";
-            string userName = User.Identity.Name;
-            if (userName != null) return userName;
-            return "";
-        }
-
-        public string MeasurementPeriod()
-        {
-            if (courseid == null) return null;
-            return _context.GetmeasurementPeriodForCourse(courseid);
         }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using AssessmentAssistant.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Claims;
 
 namespace AssessmentAssistant.Data
 {
@@ -16,6 +17,7 @@ namespace AssessmentAssistant.Data
         public DbSet<Enumerations>? Enumerations { get; set; }
         public DbSet<ApplicationUser>? ApplicationUsers { get; set; }
         public DbSet<MeasurementPeriods>? MeasurementsPeriods { get;set; }
+        public DbSet<UserSettings>? UserSettings { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -185,7 +187,7 @@ namespace AssessmentAssistant.Data
                
         }
 
-        public IEnumerable<AcademicCourse> AcademicCoursesForUser(string user)
+        public IEnumerable<AcademicCourse> GetAcademicCoursesForUser(string user)
         {
             if (this.AcademicCourses == null) { return new List<AcademicCourse>(); }
 
@@ -193,6 +195,48 @@ namespace AssessmentAssistant.Data
                 .Where(s => s.CourseCoordinatorID == user);
 
             return list;
+        }
+
+        #endregion
+
+        #region "Helper Methods for Pages"
+
+        public string UserId(ClaimsPrincipal User)
+        {
+            if (User.Identity == null) return "";
+            string userName = User.Identity.Name;
+            if (userName != null) return userName;
+            return "";
+        }
+
+        public string GetDefaultMeasurementPeriod(string UserId)
+        {
+            if (this.UserSettings == null) { return ""; }
+            try
+            {
+                string mp = this.UserSettings
+                    .Where(g => g.UserId == UserId)
+                    .First()
+                    .MeasurementPeriod;
+                return mp;
+            }
+            catch (Exception ex) { return ""; }
+            return "";
+        }
+        public string GetUserSettingsId(string UserId)
+        {
+            if (this.UserSettings == null) { return null; }
+            try
+            {
+                string mp = this.UserSettings
+                    .Where(g => g.UserId == UserId)
+                    .First()
+                    .UserSettingsId
+                    .ToString();
+                return mp;
+            }
+            catch (Exception ex) { return null; }
+            return null;
         }
         #endregion
 

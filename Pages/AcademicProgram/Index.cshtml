@@ -12,7 +12,8 @@
 <p><a asp-page="Create">Create New Academic Program</a></p>
 <hr/>
 To Edit information about the program click Edit. To add or view courses for the program
-click on Details. 
+click on Details. Each academic program will have a new entry for each measurement period which
+allows for 
 <hr/>
 <table class="table">
     <thead>
@@ -20,8 +21,11 @@ click on Details.
             <th>
                 @Html.DisplayNameFor(model => model.AcademicPrograms[0].ProgramTitle)
             </th>
-            <th></th>
-            <th></th>
+            <th>Measurement Period</th>
+            <th>Edit Program</th>
+            <th>Add Information</th>
+            <th>Make Default</th>
+
         </tr>
     </thead>
     <tbody>
@@ -31,10 +35,16 @@ click on Details.
                 @Html.DisplayFor(modelItem => item.ProgramTitle)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.MeasurementPeriod)
+            </td>
+            <td>
                 <a asp-page="./Edit" asp-route-id="@item.AcademicProgramId">Edit Academic Program</a>                
             </td>
             <td>
                 <a asp-page="./Details" asp-route-id="@item.AcademicProgramId">Add Courses and Outcomes</a>
+            </td>
+            <td>
+                <p>Make Default (add this)</p>
             </td>
         </tr>
 }

@@ -1,0 +1,47 @@
+﻿@page
+@model AssessmentAssistant.Pages.UserSettings.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h4>Default User Settings</h4>
+<br/>
+Please set the default measurement period for the user. This will be the Measurement Period you will be using to creating course and outcomes and measures. 
+All programs, outcomes, and merasures exist for a fixed measurement period. When this period is over the programs, courses, and outcomes can be
+copied to a new measurement period. This allows for changes during each measurement period. 
+<br/><br/>
+The measurement period used will be the default used for all newly created programs, outcomes, and measures. 
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" >
+                <label asp-for="UserSettings.UserId" class="control-label"></label>
+                <input asp-for="UserSettings.UserId" class="form-control" value="@Model.UserId()" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Select Measurement Period:</label>
+                <select asp-for="UserSettings.MeasurementPeriod" asp-items="@Model.MeasurementPeriodList" class="form-control"></select>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="UserSettings.AcademicProgramId" class="control-label"></label>
+                <input asp-for="UserSettings.AcademicProgramId" class="form-control" />
+                <span asp-validation-for="UserSettings.AcademicProgramId" class="text-danger"></span>
+            </div><br/>
+            <div class="form-group">
+                <input type="submit" value="Save Default Value" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<br/>
+<div>
+    <a asp-page="../Index">Back to Home Page</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

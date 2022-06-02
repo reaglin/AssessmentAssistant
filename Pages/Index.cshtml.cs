@@ -28,6 +28,9 @@ namespace AssessmentAssistant.Pages
 
         public IEnumerable<AssessmentAssistant.Models.AcademicProgram> programs { get; set; }
 
+        public string MeasurementPeriod;
+        public string UserSettingsId;
+
         public void OnGet()
         {
             // Displayed here (upon login) - will be any programs or course that the user
@@ -35,9 +38,10 @@ namespace AssessmentAssistant.Pages
             if (User.Identity == null) { return; }
             if (!User.Identity.IsAuthenticated) { return; }
 
-            courses = _context.AcademicCourses
-                .Where(c => c.CourseCoordinatorID == User.Identity.Name)
-                .ToList();
+            MeasurementPeriod = _context.GetDefaultMeasurementPeriod(User.Identity.Name);
+            UserSettingsId = _context.GetUserSettingsId(User.Identity.Name);
+
+            courses = _context.GetAcademicCoursesForUser(User.Identity.Name);
 
             programs = _context.AcademicPrograms
                 .Where(c => c.RecordOwnerUserName == User.Identity.Name)

@@ -10,9 +10,9 @@ using AssessmentAssistant.Models;
 
 namespace AssessmentAssistant.Pages.AcademicProgram
 {
-    public class CreateModel : PageModel
+    public class CreateModel : AAPageModel
     {
-        public readonly AssessmentAssistant.Data.ApplicationDbContext _context;
+        //public readonly AssessmentAssistant.Data.ApplicationDbContext _context;
         
         public List<SelectListItem> MeasurementPeriodList { get; set; }
         public CreateModel(AssessmentAssistant.Data.ApplicationDbContext context)
@@ -23,6 +23,8 @@ namespace AssessmentAssistant.Pages.AcademicProgram
         public IActionResult OnGet()
         {
             MeasurementPeriodList = _context.GetMeasurementPeriods();
+
+            if (!Validate()) return RedirectToPage("../Index");
 
             return Page();
         }
@@ -46,14 +48,6 @@ namespace AssessmentAssistant.Pages.AcademicProgram
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
-        }
-
-        public string UserId()
-        {
-            if (User.Identity == null) return "";
-            string userName = User.Identity.Name;
-            if (userName != null) return userName;
-            return "";
         }
     }
 }

@@ -16,7 +16,17 @@
     @if(User.Identity.IsAuthenticated) 
     {
     <h2>Courses for @User.Identity.Name</h2>
-    <table class="table">
+
+        @if (@Model.MeasurementPeriod == "")
+        {
+            <a href='../UserSettings/Create'>Create Default Settings</a>
+        }
+        else
+        {
+            <p>Default Measurement Period: @Model.MeasurementPeriod:  
+            <a href='../UserSettings/Edit?id=@Model.UserSettingsId'>Change Value</a></p>
+        }
+        <table class="table">
     <thead>
         <tr>
             <th>
