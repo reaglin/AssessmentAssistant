@@ -46,5 +46,10 @@ namespace AssessmentAssistant.Pages.AcademicCourse
 
             return Page();
         }
+
+        public string AcademicProgramTitle()
+        {
+            return _context.GetAcademicProgramTitle(AcademicCourse.AcademicProgramId);
+        }
     }
 }

@@ -26,12 +26,15 @@
             <p>Default Measurement Period: @Model.MeasurementPeriod:  
             <a href='../UserSettings/Edit?id=@Model.UserSettingsId'>Change Value</a></p>
         }
+        <hr/>
+        <p>This is a list of all courses assigned to you as the Course Coordinator. From here you can edit the course information,
+            create or edit outcomes, and also define measures for course outcomes. All courses and course outcomes should be for a
+            specific measurement period, which can be set from this page.
+        </p>
         <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.courses)
-            </th>
+            <th>Course</th>
             <th>View Course Details</th>
             <th>Edit Course Information</th>
         </tr>
@@ -43,9 +46,8 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CourseTitle)
+                            @Html.DisplayFor(modelItem => item.CourseTitle) @Html.DisplayFor(modelItem => item.CourseDescription)
                         </td>
-
                         <td>
                             <a asp-page="./AcademicCourse/List" asp-route-id="@item.AcademicCourseId">List of All Courses</a>
                         </td>

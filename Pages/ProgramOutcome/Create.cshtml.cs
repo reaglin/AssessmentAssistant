@@ -17,6 +17,8 @@ namespace AssessmentAssistant.Pages.ProgramOutcome
 
         public AssessmentAssistant.Models.AcademicProgram AcademicProgram { get; set; }
 
+        public long? academicprogramid;
+
         public CreateModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
             _context = context;
@@ -26,6 +28,8 @@ namespace AssessmentAssistant.Pages.ProgramOutcome
         {
             // The id here is the id of the Academic program for the outcome
             if (id == null) return NotFound();
+
+            academicprogramid = id;
 
             AcademicProgram = await _context.AcademicPrograms.FirstOrDefaultAsync(m => m.AcademicProgramId == id);
 
@@ -37,13 +41,12 @@ namespace AssessmentAssistant.Pages.ProgramOutcome
                 return NotFound();
             }
 
-            MeasurementPeriodList = _context.GetMeasurementPeriods();
+
             return Page();
         }
 
         [BindProperty]
         public AssessmentAssistant.Models.ProgramOutcome ProgramOutcome { get; set; } = default!;
-        public List<SelectListItem> MeasurementPeriodList { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -56,15 +59,18 @@ namespace AssessmentAssistant.Pages.ProgramOutcome
             _context.ProgramOutcomes.Add(ProgramOutcome);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+// Eaglin fix this
+            return RedirectToPage(academicprogramid);
         }
 
         public string UserId()
         {
-            if (User.Identity == null) return "";
-            string userName = User.Identity.Name;
-            if (userName != null) return userName;
-            return "";
+            return _context.UserId(User);
+        }
+
+        public string MeasurementPeriod()
+        {
+            return _context.GetDefaultMeasurementPeriod(User.Identity.Name);
         }
 
 

@@ -13,13 +13,12 @@ namespace AssessmentAssistant.Pages.CourseOutcome
 {
     public class CreateModel : AAPageModel
     {
-
-
         public List<SelectListItem> ApplicationUsersList { get; set; }
 
         public List<SelectListItem> AcademicProgramsList { get; set; }
 
         public long? courseid { get; set; }
+        public long? programid { get; set; }
 
         public CreateModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
@@ -35,8 +34,14 @@ namespace AssessmentAssistant.Pages.CourseOutcome
                 return NotFound();
             }
 
+            programid = academiccourse.AcademicProgramId;
+
 
             ViewData["AcademicCourseId"] = new SelectList(_context.AcademicCourses, "AcademicCourseId", "AcademicCourseId");
+
+
+
+            ViewData["CourseTitle"] = _context.GetAcademicCourseTitle(id);
 
             ApplicationUsersList = _context.GetApplicationUsers();
 
@@ -61,6 +66,11 @@ namespace AssessmentAssistant.Pages.CourseOutcome
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
+        }
+
+        public List<AssessmentAssistant.Models.ProgramOutcome> ProgramOutcomes()
+        {
+            return _context.GetProgramOutcomes(programid);
         }
     }
 }

@@ -38,8 +38,16 @@ namespace AssessmentAssistant.Pages.CourseOutcome
                     CourseOutcome = await _context.CourseOutcomes
                     .Where(o => o.CourseOutcomeId == id)
                     .Include(c => c.AcademicCourse).ToListAsync();
+
+                    ViewData["CourseId"] = courseid;
+                    ViewData["CourseTitle"] = _context.GetAcademicCourseTitle(courseid);
                 }
             }
+        }
+
+        public string AcademicCourseTitle()
+        {
+            return _context.GetAcademicCourseTitle(courseid);
         }
     }
 }

@@ -160,9 +160,20 @@ namespace AssessmentAssistant.Data
             return outcomes;
         }
 
-       
+        public List<ProgramOutcome> GetProgramOutcomes(long? id)
+        {
+            if (id == null) return new List<ProgramOutcome>();
 
-        public string GetAcademicProgramTitle(int AcademicProgramId)
+            List<ProgramOutcome> outcomes = this.ProgramOutcomes
+                .Where(s => s.AcademicProgramId == id)
+                .ToList();
+
+            return outcomes;
+
+        }
+
+
+        public string GetAcademicProgramTitle(long AcademicProgramId)
         {
             List<AcademicProgram> list = this.AcademicPrograms
                 .Where(s => s.AcademicProgramId == AcademicProgramId)
@@ -177,6 +188,23 @@ namespace AssessmentAssistant.Data
                 return String.Empty;
             }
 
+        }
+
+        public string GetAcademicCourseTitle(long? AcademicCourseId)
+        {
+            if (AcademicCourseId == null) return String.Empty;
+            List<AcademicCourse> list = this.AcademicCourses
+            .Where(s => s.AcademicCourseId == AcademicCourseId)
+            .ToList();
+
+            if (list.Count > 0)
+            {
+                return list.FirstOrDefault().CourseTitle + " " + list.FirstOrDefault().CourseDescription;
+            }
+            else
+            {
+                return String.Empty;
+            }
         }
 
             public IEnumerable<SelectListItem> GetTrueFalse()
