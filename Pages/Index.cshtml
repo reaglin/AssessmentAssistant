@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
@@ -17,13 +17,13 @@
     {
     <h2>Courses for @User.Identity.Name</h2>
 
-        @if (@Model.MeasurementPeriod == "")
+        @if (@Model.MeasurementPeriod() == "")
         {
             <a href='../UserSettings/Create'>Create Default Settings</a>
         }
         else
         {
-            <p>Default Measurement Period: @Model.MeasurementPeriod:  
+            <p>Default Measurement Period: @Model.MeasurementPeriod():  
             <a href='../UserSettings/Edit?id=@Model.UserSettingsId'>Change Value</a></p>
         }
         <hr/>
@@ -35,7 +35,7 @@
     <thead>
         <tr>
             <th>Course</th>
-            <th>View Course Details</th>
+            <th>Associated Program</th>
             <th>Edit Course Information</th>
         </tr>
     </thead>
@@ -49,9 +49,9 @@
                             @Html.DisplayFor(modelItem => item.CourseTitle) @Html.DisplayFor(modelItem => item.CourseDescription)
                         </td>
                         <td>
-                            <a asp-page="./AcademicCourse/List" asp-route-id="@item.AcademicCourseId">List of All Courses</a>
+                            <label>@Model.AcademicProgramTitle(item.AcademicProgramId)</label>
                         </td>
-                                                <td>
+                        <td>
                             <a asp-page="./AcademicCourse/Details" asp-route-id="@item.AcademicCourseId">Edit Course and Outcomes for Course</a>                
                         </td>
                     </tr>

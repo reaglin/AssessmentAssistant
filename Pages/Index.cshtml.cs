@@ -9,10 +9,10 @@ using AssessmentAssistant.Models;
 
 namespace AssessmentAssistant.Pages
 {
-    public class IndexModel : PageModel
+    public class IndexModel : AAPageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private readonly ApplicationDbContext _context;
+        //private readonly ApplicationDbContext _context;
 
         //public IndexModel(ILogger<IndexModel> logger)
         //{
@@ -28,7 +28,7 @@ namespace AssessmentAssistant.Pages
 
         public IEnumerable<AssessmentAssistant.Models.AcademicProgram> programs { get; set; }
 
-        public string MeasurementPeriod;
+//        public string MeasurementPeriod;
         public string UserSettingsId;
 
         public void OnGet()
@@ -38,7 +38,7 @@ namespace AssessmentAssistant.Pages
             if (User.Identity == null) { return; }
             if (!User.Identity.IsAuthenticated) { return; }
 
-            MeasurementPeriod = _context.GetDefaultMeasurementPeriod(User.Identity.Name);
+            //MeasurementPeriod = _context.GetDefaultMeasurementPeriod(User.Identity.Name);
             UserSettingsId = _context.GetUserSettingsId(User.Identity.Name);
 
             courses = _context.GetAcademicCoursesForUser(User.Identity.Name);
@@ -48,6 +48,8 @@ namespace AssessmentAssistant.Pages
                 .ToList();
 
         }
+
+
 
     }
 }

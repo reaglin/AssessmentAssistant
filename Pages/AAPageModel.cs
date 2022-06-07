@@ -24,6 +24,18 @@ namespace AssessmentAssistant.Pages
             return _context.GetDefaultMeasurementPeriod(User.Identity.Name);
         }
 
+        public string AcademicProgramTitle(long? academicprogramid)
+        {
+
+            if (academicprogramid == null) return "Unspecified";
+            return _context.GetAcademicProgramTitle(academicprogramid);
+        }
+
+        public string AcademicCourseTitle(long? courseid)
+        {
+            return _context.GetAcademicCourseTitle(courseid);
+        }
+
         public bool Validate()
         {
             // This will validate, can use in OnGet method

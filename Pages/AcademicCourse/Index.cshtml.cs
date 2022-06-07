@@ -10,9 +10,9 @@ using AssessmentAssistant.Models;
 
 namespace AssessmentAssistant.Pages.AcademicCourse
 {
-    public class IndexModel : PageModel
+    public class IndexModel : AAPageModel
     {
-        private readonly AssessmentAssistant.Data.ApplicationDbContext _context;
+        //private readonly AssessmentAssistant.Data.ApplicationDbContext _context;
 
         public IndexModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {

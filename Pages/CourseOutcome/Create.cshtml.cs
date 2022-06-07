@@ -34,13 +34,7 @@ namespace AssessmentAssistant.Pages.CourseOutcome
                 return NotFound();
             }
 
-            programid = academiccourse.AcademicProgramId;
-
-
             ViewData["AcademicCourseId"] = new SelectList(_context.AcademicCourses, "AcademicCourseId", "AcademicCourseId");
-
-
-
             ViewData["CourseTitle"] = _context.GetAcademicCourseTitle(id);
 
             ApplicationUsersList = _context.GetApplicationUsers();
@@ -65,7 +59,7 @@ namespace AssessmentAssistant.Pages.CourseOutcome
             _context.CourseOutcomes.Add(CourseOutcome);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return Redirect("Index?id=" + CourseOutcome.AcademicCourseId);
         }
 
         public List<AssessmentAssistant.Models.ProgramOutcome> ProgramOutcomes()

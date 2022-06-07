@@ -10,9 +10,8 @@ using AssessmentAssistant.Models;
 
 namespace AssessmentAssistant.Pages.CourseOutcome
 {
-    public class IndexModel : PageModel
+    public class IndexModel : AAPageModel
     {
-        private readonly AssessmentAssistant.Data.ApplicationDbContext _context;
 
         public long? courseid;
 
@@ -36,18 +35,13 @@ namespace AssessmentAssistant.Pages.CourseOutcome
                 else
                 {
                     CourseOutcome = await _context.CourseOutcomes
-                    .Where(o => o.CourseOutcomeId == id)
+                    .Where(o => o.AcademicCourseId == id)
                     .Include(c => c.AcademicCourse).ToListAsync();
 
                     ViewData["CourseId"] = courseid;
                     ViewData["CourseTitle"] = _context.GetAcademicCourseTitle(courseid);
                 }
             }
-        }
-
-        public string AcademicCourseTitle()
-        {
-            return _context.GetAcademicCourseTitle(courseid);
         }
     }
 }

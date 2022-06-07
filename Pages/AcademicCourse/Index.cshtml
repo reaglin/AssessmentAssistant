@@ -29,12 +29,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.AcademicCourse[0].MeasurementPeriod)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AcademicCourse[0].EnteredByUserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AcademicCourse[0].RecordOwnerUserName)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -51,21 +45,15 @@
                 @Html.DisplayFor(modelItem => item.CourseCoordinatorID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AcademicProgram.AcademicProgramId)
+                @Model.AcademicProgramTitle(item.AcademicProgramId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MeasurementPeriod)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EnteredByUserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RecordOwnerUserName)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.AcademicCourseId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.AcademicCourseId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.AcademicCourseId">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.AcademicCourseId">Edit Course</a> |
+                <a asp-page="./Details" asp-route-id="@item.AcademicCourseId">Details and Outcomes</a> |
+                <a asp-page="./Delete" asp-route-id="@item.AcademicCourseId">Delete Course</a>
             </td>
         </tr>
 }

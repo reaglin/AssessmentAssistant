@@ -173,8 +173,9 @@ namespace AssessmentAssistant.Data
         }
 
 
-        public string GetAcademicProgramTitle(long AcademicProgramId)
+        public string GetAcademicProgramTitle(long? AcademicProgramId)
         {
+            if (AcademicProgramId == null) return string.Empty;
             List<AcademicProgram> list = this.AcademicPrograms
                 .Where(s => s.AcademicProgramId == AcademicProgramId)
                 .ToList();
