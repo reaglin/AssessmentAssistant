@@ -10,10 +10,8 @@ using AssessmentAssistant.Models;
 
 namespace AssessmentAssistant.Pages.AcademicCourse
 {
-    public class ListModel : PageModel
+    public class ListModel : AAPageModel
     {
-        private readonly AssessmentAssistant.Data.ApplicationDbContext _context;
-
         public ListModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
             _context = context;
@@ -21,8 +19,9 @@ namespace AssessmentAssistant.Pages.AcademicCourse
 
         public IList<AssessmentAssistant.Models.AcademicCourse> AcademicCourse { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(long? id)
         {
+            programid = id;
             if (_context.AcademicCourses != null)
             {
                 AcademicCourse = await _context.AcademicCourses

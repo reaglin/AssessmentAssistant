@@ -1,0 +1,87 @@
+﻿@page
+@model AssessmentAssistant.Pages.CourseOffering.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Course Offering for @Model.AcademicCourseTitle()</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CourseOffering.CourseOfferingId" />
+            <div class="form-group">
+                <label asp-for="CourseOffering.SectionNumber" class="control-label"></label>
+                <input asp-for="CourseOffering.SectionNumber" class="form-control" />
+                <span asp-validation-for="CourseOffering.SectionNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseOffering.Semester" class="control-label"></label>
+                <input asp-for="CourseOffering.Semester" class="form-control" />
+                <span asp-validation-for="CourseOffering.Semester" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseOffering.Instructor" class="control-label"></label>
+                <input asp-for="CourseOffering.Instructor" class="form-control" />
+                <span asp-validation-for="CourseOffering.Instructor" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="CourseOffering.AcademicCourseId" class="control-label"></label>
+                <select asp-for="CourseOffering.AcademicCourseId" class="form-control" asp-items="ViewBag.AcademicCourseId"></select>
+                <span asp-validation-for="CourseOffering.AcademicCourseId" class="text-danger"></span>
+            </div>
+            <table>
+                <thead><tr>
+                    <th><label asp-for="CourseOffering.Number_A" class="control-label"></label></th>
+                    <th><label asp-for="CourseOffering.Number_B" class="control-label"></label></th>
+                    <th><label asp-for="CourseOffering.Number_C" class="control-label"></label></th>
+                    <th><label asp-for="CourseOffering.Number_D" class="control-label"></label></th>
+                    <th><label asp-for="CourseOffering.Number_F" class="control-label"></label></th>
+                    <th><label asp-for="CourseOffering.Number_W" class="control-label"></label></th>
+
+                </tr></thead>
+                <tbody><tr>
+                    <td><input asp-for="CourseOffering.Number_A" class="form-control" /></td>
+                    <td><input asp-for="CourseOffering.Number_B" class="form-control" /></td>
+                    <td><input asp-for="CourseOffering.Number_C" class="form-control" /></td>
+                    <td><input asp-for="CourseOffering.Number_D" class="form-control" /></td>
+                    <td><input asp-for="CourseOffering.Number_F" class="form-control" /></td>
+                    <td><input asp-for="CourseOffering.Number_W" class="form-control" /></td>
+                </tr></tbody>
+            </table>
+            <div class="form-group">
+                <label asp-for="CourseOffering.MeasurementPeriod" class="control-label"></label>
+                <input asp-for="CourseOffering.MeasurementPeriod" class="form-control" />
+                <span asp-validation-for="CourseOffering.MeasurementPeriod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseOffering.EnteredByUserName" class="control-label"></label>
+                <input asp-for="CourseOffering.EnteredByUserName" class="form-control" />
+                <span asp-validation-for="CourseOffering.EnteredByUserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseOffering.RecordOwnerUserName" class="control-label"></label>
+                <input asp-for="CourseOffering.RecordOwnerUserName" class="form-control" />
+                <span asp-validation-for="CourseOffering.RecordOwnerUserName" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index?id=@Model.courseid">Back to List of Offerings</a>
+    <a href="../AcademicCourse/Details?id=@Model.courseid">Back to Course </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

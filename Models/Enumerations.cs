@@ -8,8 +8,15 @@ namespace AssessmentAssistant.Models
     public class MeasurementPeriods
     {
         [Key]
-        [Display(Name = "MeasurementPeriod")]
+        [Display(Name = "Measurement Period")]
         public string MeasurementPeriod { get; set; }
+    }
+
+    public class Semesters
+    {
+        [Key]
+        [Display(Name = "Semester")]
+        public string Semester { get; set; }
     }
 
     public class Enumerations

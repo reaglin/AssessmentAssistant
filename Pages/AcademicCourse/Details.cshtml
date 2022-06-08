@@ -34,8 +34,8 @@
             @Html.DisplayNameFor(model => model.AcademicCourse.AcademicProgram)
         </dt>
         <dd class="col-sm-10">
-            @if(@Model.AcademicCourse.AcademicProgramId == 0){<a asp-page="../AcademicCourse/Edit" asp-route-id="@Model.AcademicCourse?.AcademicCourseId">Attach Course to Academic Program</a>} 
-            else{<p>"@Model.AcademicProgramTitle()"</p>}
+            @if(@Model.programid == null){<a asp-page="../AcademicCourse/Edit" asp-route-id="@Model.AcademicCourse?.AcademicCourseId">Attach Course to Academic Program</a>} 
+            else{<p>@Model.AcademicProgramTitle()</p>}
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.AcademicCourse.MeasurementPeriod)
@@ -58,9 +58,11 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.AcademicCourse?.AcademicCourseId">Edit</a> |
-    <a asp-page="../CourseOutcome/Index" asp-route-id="@Model.AcademicCourse?.AcademicCourseId">Course Outcomes for Course</a> |
-    <a asp-page="./Index">Full Course List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.AcademicCourse?.AcademicCourseId">Edit Course</a> |
+    <a href="../CourseOutcome/Index?id=@Model.courseid">View/Enter Course Outcomes for Course</a> |
+    <a href="../CourseOffering/Index?id=@Model.courseid">View/Enter Offerings for Course</a> |
+
+    <a asp-page="./Index">View Full List of Courses</a>
 </div>
 <div></div>
 

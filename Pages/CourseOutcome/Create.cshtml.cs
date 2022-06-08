@@ -17,9 +17,6 @@ namespace AssessmentAssistant.Pages.CourseOutcome
 
         public List<SelectListItem> AcademicProgramsList { get; set; }
 
-        public long? courseid { get; set; }
-        public long? programid { get; set; }
-
         public CreateModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
             _context = context;

@@ -11,9 +11,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AssessmentAssistant.Pages.AcademicCourse
 {
-    public class DetailsModel : PageModel
+    public class DetailsModel : AAPageModel
     {
-        private readonly AssessmentAssistant.Data.ApplicationDbContext _context;
+        //private readonly AssessmentAssistant.Data.ApplicationDbContext _context;
         public List<AssessmentAssistant.Models.CourseOutcome> CourseOutcomes { get; set; }
 
 
@@ -26,12 +26,13 @@ namespace AssessmentAssistant.Pages.AcademicCourse
 
         public async Task<IActionResult> OnGetAsync(long? id)
         {
+            
             if (id == null || _context.AcademicCourses == null)
             {
                 return NotFound();
             }
+            courseid = id;
 
-            
 
             var academiccourse = await _context.AcademicCourses.FirstOrDefaultAsync(m => m.AcademicCourseId == id);
             if (academiccourse == null)
@@ -42,14 +43,12 @@ namespace AssessmentAssistant.Pages.AcademicCourse
             {
                 AcademicCourse = academiccourse;
             }
+            programid = (long)AcademicCourse.AcademicProgramId;
+
             CourseOutcomes = _context.GetCourseOutcomes(id);
 
             return Page();
         }
 
-        public string AcademicProgramTitle()
-        {
-            return _context.GetAcademicProgramTitle(AcademicCourse.AcademicProgramId);
-        }
     }
 }

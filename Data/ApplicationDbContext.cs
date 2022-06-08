@@ -17,6 +17,7 @@ namespace AssessmentAssistant.Data
         public DbSet<Enumerations>? Enumerations { get; set; }
         public DbSet<ApplicationUser>? ApplicationUsers { get; set; }
         public DbSet<MeasurementPeriods>? MeasurementsPeriods { get;set; }
+        public DbSet<Semesters>? Semesters { get; set; }
         public DbSet<UserSettings>? UserSettings { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -81,7 +82,7 @@ namespace AssessmentAssistant.Data
             List<MeasurementPeriods> Measures = this.MeasurementsPeriods.ToList();
 
             List<SelectListItem> MeasurementPeriodList = new List<SelectListItem>();
-            MeasurementPeriodList = new List<SelectListItem>();
+            //MeasurementPeriodList = new List<SelectListItem>();
             foreach (var period in Measures)
             {
                 MeasurementPeriodList.Add(new SelectListItem
@@ -92,6 +93,26 @@ namespace AssessmentAssistant.Data
             }
 
             return MeasurementPeriodList;
+        }
+
+        public List<SelectListItem> GetSemesters()
+        {
+            Semesters.Load();
+//            if (this.Semesters == null) { return new List<Semesters>()}
+            List<Semesters> semesters = this.Semesters.ToList();
+
+            List<SelectListItem> semesterlist = new List<SelectListItem>();
+
+            foreach (var item in semesters)
+            {
+                semesterlist.Add(new SelectListItem
+                {
+                    Value = item.Semester,
+                    Text = item.Semester
+                });
+            }
+
+            return semesterlist;
         }
 
         public string GetmeasurementPeriodForCourse(long? id)

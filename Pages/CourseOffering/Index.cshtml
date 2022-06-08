@@ -1,0 +1,91 @@
+﻿@page
+@model AssessmentAssistant.Pages.CourseOffering.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a href="Create?id=@Model.courseid">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseOffering[0].SectionNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseOffering[0].Semester)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseOffering[0].Instructor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseOffering[0].Number_A)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseOffering[0].Number_B)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseOffering[0].Number_C)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseOffering[0].Number_D)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseOffering[0].Number_F)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseOffering[0].Number_W)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseOffering[0].MeasurementPeriod)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.CourseOffering) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SectionNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Semester)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Instructor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number_A)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number_B)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number_C)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number_D)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number_F)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number_W)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MeasurementPeriod)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.CourseOfferingId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.CourseOfferingId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.CourseOfferingId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

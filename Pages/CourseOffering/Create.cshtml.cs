@@ -8,54 +8,43 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using AssessmentAssistant.Data;
 using AssessmentAssistant.Models;
 
-namespace AssessmentAssistant.Pages.AcademicCourse
+namespace AssessmentAssistant.Pages.CourseOffering
 {
     public class CreateModel : AAPageModel
     {
-
-        // Define for any drop down items in interface
-
 
         public CreateModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(long? id)
         {
-            if (!Validate()) return RedirectToPage("../Index");
 
-            ViewData["AcademicProgramId"] = new SelectList(_context.AcademicPrograms, "AcademicProgramId", "AcademicProgramId");
-
-            // Fill in for drop down items in list (from database) 
-            ApplicationUsersList = _context.GetApplicationUsers(); 
-
-            AcademicProgramsList = _context.GetAcademicPrograms();            
-
-            MeasurementPeriodList = _context.GetMeasurementPeriods();
+            courseid = id;
 
             SemesterList = _context.GetSemesters();
 
+            //ViewData["AcademicCourseId"] = new SelectList(_context.AcademicCourses, "AcademicCourseId", "AcademicCourseId");
             return Page();
         }
 
         [BindProperty]
-        public AssessmentAssistant.Models.AcademicCourse AcademicCourse { get; set; } = default!;
+        public AssessmentAssistant.Models.CourseOffering CourseOffering { get; set; } = default!;
+        
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid || _context.AcademicCourses == null || AcademicCourse == null)
+          if (!ModelState.IsValid || _context.CourseOfferings == null || CourseOffering == null)
             {
                 return Page();
             }
 
-
-            _context.AcademicCourses.Add(AcademicCourse);
+            _context.CourseOfferings.Add(CourseOffering);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
-
     }
 }
