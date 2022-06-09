@@ -1,0 +1,69 @@
+﻿@page
+@model AssessmentAssistant.Pages.OutcomeMeasure.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h4>Outcome Measures for Course Offering </h4>
+
+<p>
+    <a href="Create?id=@Model.offeringid">Create New Outcome Measure</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OutcomeMeasure[0].CourseOutcomeNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OutcomeMeasure[0].AssessmentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OutcomeMeasure[0].MeasurementStatement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OutcomeMeasure[0].ThresholdValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OutcomeMeasure[0].NumberMeasured)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OutcomeMeasure[0].NumberMeetingThreshold)
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.OutcomeMeasure) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseOutcomeNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssessmentType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MeasurementStatement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThresholdValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberMeasured)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberMeetingThreshold)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.OutcomeMeasureId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.OutcomeMeasureId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.OutcomeMeasureId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

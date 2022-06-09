@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AssessmentAssistant.Data;
 using AssessmentAssistant.Models;
 
-namespace AssessmentAssistant.Pages.CourseOffering
+namespace AssessmentAssistant.Pages.OutcomeMeasure
 {
     public class DetailsModel : AAPageModel
     {
@@ -18,26 +18,23 @@ namespace AssessmentAssistant.Pages.CourseOffering
             _context = context;
         }
 
-      public AssessmentAssistant.Models.CourseOffering CourseOffering { get; set; } = default!; 
+      public AssessmentAssistant.Models.OutcomeMeasure OutcomeMeasure { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(long? id)
         {
-            if (id == null || _context.CourseOfferings == null)
+            if (id == null || _context.OutcomeMeasures == null)
             {
                 return NotFound();
             }
 
-            var courseoffering = await _context.CourseOfferings.FirstOrDefaultAsync(m => m.CourseOfferingId == id);
-
-            if (courseoffering == null)
+            var outcomemeasure = await _context.OutcomeMeasures.FirstOrDefaultAsync(m => m.OutcomeMeasureId == id);
+            if (outcomemeasure == null)
             {
                 return NotFound();
             }
             else 
             {
-                offeringid = id;
-                courseid = courseoffering.AcademicCourseId;
-                CourseOffering = courseoffering;
+                OutcomeMeasure = outcomemeasure;
             }
             return Page();
         }

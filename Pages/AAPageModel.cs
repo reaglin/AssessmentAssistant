@@ -32,6 +32,7 @@ namespace AssessmentAssistant.Pages
 
         public long? courseid;
         public long? programid;
+        public long? offeringid;
         public string UserId()
         {
             return _context.UserId(User);
@@ -71,6 +72,11 @@ namespace AssessmentAssistant.Pages
         public string AcademicCourseTitle()
         {
             return _context.GetAcademicCourseTitle(courseid);
+        }
+
+        public string CourseOfferingTitle()
+        {
+            return _context.GetCourseOfferingTitle(offeringid);
         }
 
         public bool Validate()

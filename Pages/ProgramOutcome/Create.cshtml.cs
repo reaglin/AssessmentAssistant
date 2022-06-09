@@ -11,13 +11,11 @@ using AssessmentAssistant.Models;
 
 namespace AssessmentAssistant.Pages.ProgramOutcome
 {
-    public class CreateModel : PageModel
+    public class CreateModel : AAPageModel
     {
-        private readonly AssessmentAssistant.Data.ApplicationDbContext _context;
+        //private readonly AssessmentAssistant.Data.ApplicationDbContext _context;
 
         public AssessmentAssistant.Models.AcademicProgram AcademicProgram { get; set; }
-
-        public long? academicprogramid;
 
         public CreateModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
@@ -29,7 +27,7 @@ namespace AssessmentAssistant.Pages.ProgramOutcome
             // The id here is the id of the Academic program for the outcome
             if (id == null) return NotFound();
 
-            academicprogramid = id;
+            programid = id;
 
             AcademicProgram = await _context.AcademicPrograms.FirstOrDefaultAsync(m => m.AcademicProgramId == id);
 
@@ -59,20 +57,8 @@ namespace AssessmentAssistant.Pages.ProgramOutcome
             _context.ProgramOutcomes.Add(ProgramOutcome);
             await _context.SaveChangesAsync();
 
-// Eaglin fix this
-            return RedirectToPage(academicprogramid);
+
+            return Redirect("../AcademicProgram/Details?id="+programid.ToString());
         }
-
-        public string UserId()
-        {
-            return _context.UserId(User);
-        }
-
-        public string MeasurementPeriod()
-        {
-            return _context.GetDefaultMeasurementPeriod(User.Identity.Name);
-        }
-
-
     }
 }

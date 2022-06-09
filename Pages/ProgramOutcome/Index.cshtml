@@ -6,10 +6,11 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Program Outcomes for @Model.ProgramOutcome[0].AcademicProgram.ProgramTitle</h1>
+<h1>All Program Outcomes for @Model.AcademicProgramTitle()</h1>
 
 <p>
-    <a asp-page="Create">Create New Program Outcome</a>
+    <a href="../AcademicProgram/Details/?id=@Model.programid">Go to Academic Program Page</a><br/>
+
 </p>
 <table class="table">
     <thead>
@@ -20,9 +21,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProgramOutcome[0].OutcomeStatement)
             </th>
-@*            <th>
-                @Html.DisplayNameFor(model => model.ProgramOutcome[0].AcademicProgram)
-            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.ProgramOutcome[0].MeasurementPeriod)
             </th>
@@ -38,9 +36,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.OutcomeStatement)
             </td>
-@*            <td>
-                @Html.DisplayFor(modelItem => item.AcademicProgram.AcademicProgramId)
-            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.MeasurementPeriod)
             </td>

@@ -25,7 +25,7 @@
 
 </div>
 <hr/>
-<h2> Academic Courses for @Html.DisplayFor(model => model.AcademicProgram.ProgramTitle)</h2>
+<h2> Academic Courses for @Html.DisplayFor(model => model.AcademicProgram.ProgramTitle) (@Html.DisplayFor(model => model.AcademicProgram.MeasurementPeriod))</h2>
 <div>
 <table class="table">
     <thead>
@@ -60,7 +60,7 @@
 <hr/>
     <a asp-page="../AcademicCourse/Create"asp-route-id="@Model.AcademicProgram.AcademicProgramId">Add a Course to the Academic Program</a>
     <hr/>
-<h2> Program Outcomes for @Html.DisplayFor(model => model.AcademicProgram.ProgramTitle)</h2>
+<h2> Program Outcomes for @Html.DisplayFor(model => model.AcademicProgram.ProgramTitle) (@Html.DisplayFor(model => model.AcademicProgram.MeasurementPeriod))</h2>
 <div>
 <table class="table">
     <thead>
@@ -68,8 +68,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.AcademicProgram.ProgramOutcomes)
             </th>
+            <th>Outcome Statement</th>
             <th></th>
-            <th>Statement</th>
             <th></th>
             <th></th>
         </tr>
@@ -88,13 +88,13 @@
                         </td>
 
                         <td>
-                            <a asp-page="../ProgramOutcome/Edit" asp-route-id="@item.ProgramOutcomeId">Edit</a>                
+                            <a asp-page="../ProgramOutcome/Edit" asp-route-id="@item.ProgramOutcomeId">Edit Outcome</a>                
                         </td>
                         <td>
-                            <a asp-page="../ProgramOutcome/Details" asp-route-id="@item.ProgramOutcomeId">Details</a>
+                            <a asp-page="../ProgramOutcome/Details" asp-route-id="@item.ProgramOutcomeId">Outcome Details</a>
                         </td>
                         <td>
-                            <a asp-page="../ProgramOutcome/Index" asp-route-id="@item.AcademicProgramId">Index</a>
+                            <a asp-page="../ProgramOutcome/Delete" asp-route-id="@item.ProgramOutcomeId">Delete Outcome</a>
                         </td>
                     </tr>
                 }

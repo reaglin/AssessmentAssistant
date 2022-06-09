@@ -6,11 +6,11 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>List of Course Outcomes</h1>
+<h1>Course Outcomes for @Model.AcademicCourseTitle() (@Model.MeasurementPeriod())</h1>
 <h4>@ViewData["CourseTitle"]</h4>
 
 <p>
-    <a href="CourseOutcome/Create?id=@ViewData["CourseId"]">Create New Course Outcome</a>
+    <a href="CourseOutcome/Create?id=@Model.courseid">Create New Course Outcome</a>
 </p>
 <table class="table">
     <thead>
@@ -46,9 +46,9 @@
                 @Html.DisplayFor(modelItem => item.MeasurementPeriod)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.CourseOutcomeId">Edit</a> |
+                <a asp-page="./Edit" asp-route-id="@item.CourseOutcomeId">Edit Outcome</a> |
                 <a asp-page="./Details" asp-route-id="@item.CourseOutcomeId">Course Outcome Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.CourseOutcomeId">Delete</a>
+                <a asp-page="./Delete" asp-route-id="@item.CourseOutcomeId">Delete Outcome</a>
             </td>
         </tr>
 }

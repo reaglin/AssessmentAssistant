@@ -24,6 +24,7 @@ namespace AssessmentAssistant.Pages.AcademicProgram
         public List<AssessmentAssistant.Models.AcademicCourse> AcademicCourses { get; set;}
         public List<AssessmentAssistant.Models.ProgramOutcome> ProgramOutcomes { get; set;}
 
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -39,12 +40,16 @@ namespace AssessmentAssistant.Pages.AcademicProgram
             }
 
 
+
             // Explicit Loading of Associated Courses
             // https://docs.microsoft.com/en-us/aspnet/core/data/ef-rp/read-related-data?view=aspnetcore-6.0&tabs=visual-studio
             AcademicCourses = new List<AssessmentAssistant.Models.AcademicCourse>();
             
             // Load the courses
-            _context.AcademicCourses.Where(c => c.AcademicProgramId == AcademicProgram.AcademicProgramId).Load();
+            _context.AcademicCourses
+                .Where(c => c.AcademicProgramId == AcademicProgram.AcademicProgramId)
+                .Where(c => c.MeasurementPeriod == AcademicProgram.MeasurementPeriod)
+                .Load();
             if (AcademicProgram.AcademicCourses != null)
             {
                 foreach (Models.AcademicCourse c in AcademicProgram.AcademicCourses)
@@ -58,7 +63,11 @@ namespace AssessmentAssistant.Pages.AcademicProgram
             ProgramOutcomes = new List<AssessmentAssistant.Models.ProgramOutcome>();
 
             // Load the outcomes for the academic program
-            _context.ProgramOutcomes.Where(po => po.AcademicProgramId == AcademicProgram.AcademicProgramId).Load();
+            _context.ProgramOutcomes
+                .Where(po => po.AcademicProgramId == AcademicProgram.AcademicProgramId)
+                .Where(po => po.MeasurementPeriod == AcademicProgram.MeasurementPeriod)
+                .OrderBy(po => po.OutcomeNumber)
+                .Load();
 
             if (AcademicProgram.ProgramOutcomes != null)
             {

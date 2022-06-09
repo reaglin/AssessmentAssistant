@@ -170,15 +170,16 @@ namespace AssessmentAssistant.Data
             return ApplicationUsersList;
         }
 
-        public List<CourseOutcome> GetCourseOutcomes(long? id)
+        public CourseOutcome GetCourseOutcome(long? id)
         {
-            if (id == null) return new List<CourseOutcome>();
+            if (id == null) return null;
 
-            List<CourseOutcome> outcomes = this.CourseOutcomes
+            CourseOutcome outcome = this.CourseOutcomes
                 .Where(s => s.CourseOutcomeId == id)
-                .ToList();
+                .FirstOrDefault();
 
-            return outcomes;
+            if (outcome == null) return null;
+            return outcome;
         }
 
         public List<ProgramOutcome> GetProgramOutcomes(long? id)
@@ -192,6 +193,18 @@ namespace AssessmentAssistant.Data
             return outcomes;
 
         }
+        public List<CourseOutcome> GetCourseOutcomes(long? id)
+        {
+            if (id == null) return new List<CourseOutcome>();
+
+            List<CourseOutcome> outcomes = this.CourseOutcomes
+                .Where(s => s.AcademicCourseId == id)
+                .ToList();
+
+            return outcomes;
+
+        }
+
 
 
         public string GetAcademicProgramTitle(long? AcademicProgramId)
@@ -229,6 +242,26 @@ namespace AssessmentAssistant.Data
             }
         }
 
+        public string GetCourseOfferingTitle(long? CourseOfferingId)
+        {
+            List<CourseOffering> list = this.CourseOfferings
+                .Where(s => s.CourseOfferingId == CourseOfferingId)
+                .ToList();
+
+            long? courseid = list.FirstOrDefault().AcademicCourseId;
+
+            string retVal = String.Empty;
+            if (courseid != null)
+            {
+                retVal = GetAcademicCourseTitle(courseid);
+            }
+
+            retVal += " " + list.FirstOrDefault().Semester;
+
+            return retVal;
+
+        }
+
             public IEnumerable<SelectListItem> GetTrueFalse()
         {
             return  new List<SelectListItem>() {
@@ -245,6 +278,30 @@ namespace AssessmentAssistant.Data
                 .Where(s => s.CourseCoordinatorID == user);
 
             return list;
+        }
+
+
+        public CourseOffering GetCourseOffering(long? id)
+        {
+            CourseOffering offering;
+            offering = this.CourseOfferings
+                .Where(o => o.CourseOfferingId == id)
+                .FirstOrDefault();
+
+            if (offering == null) return null; 
+            return offering;
+        }
+
+        public AcademicCourse GetAcademicCourse(long? id)
+        {
+            AcademicCourse course;
+            course = this.AcademicCourses
+                .Where(o => o.AcademicCourseId == id)
+                .FirstOrDefault();
+
+            if (course == null) return null;
+            return course;
+
         }
 
         #endregion

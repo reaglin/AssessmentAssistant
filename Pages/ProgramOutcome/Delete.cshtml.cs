@@ -10,9 +10,9 @@ using AssessmentAssistant.Models;
 
 namespace AssessmentAssistant.Pages.ProgramOutcome
 {
-    public class DeleteModel : PageModel
+    public class DeleteModel : AAPageModel
     {
-        private readonly AssessmentAssistant.Data.ApplicationDbContext _context;
+        //private readonly AssessmentAssistant.Data.ApplicationDbContext _context;
 
         public DeleteModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
@@ -37,6 +37,7 @@ namespace AssessmentAssistant.Pages.ProgramOutcome
             }
             else 
             {
+                programid = programoutcome.AcademicProgramId;
                 ProgramOutcome = programoutcome;
             }
             return Page();
@@ -44,20 +45,23 @@ namespace AssessmentAssistant.Pages.ProgramOutcome
 
         public async Task<IActionResult> OnPostAsync(long? id)
         {
+            // id is the 
             if (id == null || _context.ProgramOutcomes == null)
             {
                 return NotFound();
             }
             var programoutcome = await _context.ProgramOutcomes.FindAsync(id);
 
+
             if (programoutcome != null)
             {
+                programid = programoutcome.AcademicProgramId;
                 ProgramOutcome = programoutcome;
                 _context.ProgramOutcomes.Remove(ProgramOutcome);
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+            return Redirect("../AcademicProgram/Details?id=" + programid.ToString());
         }
     }
 }

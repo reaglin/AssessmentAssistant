@@ -6,10 +6,14 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h4>Course Offerings for @Model.AcademicCourseTitle()</h4>
+<p>
+    To enter outcome measures for course outcomes select the Enter Measures for Course Offering
+    from the offering.  
+</p>
 
 <p>
-    <a href="Create?id=@Model.courseid">Create New</a>
+    <a href="Create?id=@Model.courseid">Create New Course Semester Offering</a>
 </p>
 <table class="table">
     <thead>
@@ -81,8 +85,8 @@
                 @Html.DisplayFor(modelItem => item.MeasurementPeriod)
             </td>
             <td>
+                <a asp-page="./Details" asp-route-id="@item.CourseOfferingId">Enter Measures for Offering</a> |
                 <a asp-page="./Edit" asp-route-id="@item.CourseOfferingId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.CourseOfferingId">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.CourseOfferingId">Delete</a>
             </td>
         </tr>

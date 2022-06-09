@@ -8,8 +8,10 @@ namespace AssessmentAssistant.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Int64 CourseOfferingId { get; set; } // Course_Semester_Section
-        [Display (Name="Section Number (optional)")]
+        [Display (Name="Section (optional)")]
         public string? SectionNumber { get; set; }
+
+        [Display(Name = "Semester")]
         public string? Semester { get; set; }
 
         [Display(Name = "Instructor")]
@@ -36,6 +38,15 @@ namespace AssessmentAssistant.Models
         [Display(Name = "W")]
         public int? Number_W { get; set; }
 
+        [Display(Name = "Issues Faced")]
+        public string? IssuesFaced { get; set; }
+
+        [Display(Name = "Proposed Improvements")]
+        public string? ProposedImprovements { get; set; }
+
+        [Display(Name = "Results of Improvements")]
+        public string? ResultsOfImprovements { get; set; }
+
         public List<OutcomeMeasure>? OutcomeMeasures { get; set;} // 1:n OutcomeMeasure 
 
     }
@@ -46,16 +57,22 @@ namespace AssessmentAssistant.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Int64 OutcomeMeasureId { get; set; }
 
-        public CourseOutcome CourseOutcome { get; set; } 
-        
+        [Display(Name = "Course Outcome #")]
+        public int? CourseOutcomeNumber { get; set; }
+
+        [Display(Name = "Assessment Type")]
         public string? AssessmentType { get; set; }
 
+        [Display(Name = "Measurement")]
         public string? MeasurementStatement { get; set; }
 
+        [Display(Name = "Threshold (%)")]
         public int? ThresholdValue { get; set; }
 
+        [Display(Name = "Number Measured")]
         public int? NumberMeasured { get; set; }
 
+        [Display(Name = "Number > Threshold")]
         public int? NumberMeetingThreshold { get; set; }
 
         public Int64? CourseOfferingId { get; set; }  //n:1 CourseOffering

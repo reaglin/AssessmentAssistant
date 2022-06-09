@@ -15,8 +15,10 @@ namespace AssessmentAssistant.Models
         [Display(Name = "Program Description")]
         public string? ProgramDescription { get; set; }
 
+        [Display(Name = "Program Outcomes")]
         public List<ProgramOutcome>? ProgramOutcomes { get; set; }  // 1:n with ProgramOutcomes
-
+       
+        [Display(Name = "Program Courses")]
         public List<AcademicCourse>? AcademicCourses { get; set; }   // 1:n with AcademicCourses
 
     }
