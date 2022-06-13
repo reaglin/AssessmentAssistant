@@ -32,7 +32,7 @@ namespace AssessmentAssistant.Pages.AcademicCourse
 
             AcademicProgramsList = _context.GetAcademicPrograms();            
 
-            MeasurementPeriodList = _context.GetMeasurementPeriods();
+            MeasurementPeriodList = _context.GetMeasurementPeriodsList();
 
             SemesterList = _context.GetSemesters();
 

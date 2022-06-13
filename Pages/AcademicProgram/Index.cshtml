@@ -11,9 +11,9 @@
 
 <p><a asp-page="Create">Create New Academic Program</a></p>
 <hr/>
-To Edit information about the program click Edit. To add or view courses for the program
-click on Details. Each academic program will have a new entry for each measurement period which
-allows for 
+Each academic program will have a new entry for each measurement period which
+allows for changes to outcomes and courses from one measurement period to another. Copying the 
+program will also make a copy of all associated courses and course and program outcomes. 
 <hr/>
 <table class="table">
     <thead>
@@ -24,7 +24,8 @@ allows for
             <th>Measurement Period</th>
             <th>Edit Program</th>
             <th>Add Information</th>
-            <th>Make Default</th>
+            <th>Available Reports</th>
+            <th>Copy Program</th>
 
         </tr>
     </thead>
@@ -44,8 +45,12 @@ allows for
                 <a asp-page="./Details" asp-route-id="@item.AcademicProgramId">Add Courses and Outcomes</a>
             </td>
             <td>
-                <p>Make Default (add this)</p>
+                <p><a asp-page="./Reports" asp-route-id="@item.AcademicProgramId">Available Reports</a></p>
             </td>
+            <td>
+                <p><a asp-page="./Copy" asp-route-id="@item.AcademicProgramId">Copy Program to New Measurement Period</a></p>
+            </td>
+
         </tr>
 }
     </tbody>

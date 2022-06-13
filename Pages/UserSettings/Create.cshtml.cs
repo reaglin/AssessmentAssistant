@@ -24,7 +24,7 @@ namespace AssessmentAssistant.Pages.UserSettings
 
         public IActionResult OnGet()
         {
-            MeasurementPeriodList = _context.GetMeasurementPeriods();
+            MeasurementPeriodList = _context.GetMeasurementPeriodsList();
 
             AcademicProgramsList = _context.GetAcademicPrograms(); 
 

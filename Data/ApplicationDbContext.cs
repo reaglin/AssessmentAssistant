@@ -60,8 +60,12 @@ namespace AssessmentAssistant.Data
          * 
          * Note the code requirements for each of the lists
          */
-
-        public List<SelectListItem> GetMeasurementPeriods()
+        public List<MeasurementPeriods> GetMeasurementPeriods()
+        {
+            List<MeasurementPeriods> Measures = this.MeasurementsPeriods.ToList();
+            return Measures;
+        }
+        public List<SelectListItem> GetMeasurementPeriodsList()
         {
             /*
              * This is used to fill out the select lists for MeasurementPeriods
@@ -184,6 +188,8 @@ namespace AssessmentAssistant.Data
 
         public List<ProgramOutcome> GetProgramOutcomes(long? id)
         {
+            // All program outcomes for a program
+
             if (id == null) return new List<ProgramOutcome>();
 
             List<ProgramOutcome> outcomes = this.ProgramOutcomes
@@ -195,6 +201,8 @@ namespace AssessmentAssistant.Data
         }
         public List<CourseOutcome> GetCourseOutcomes(long? id)
         {
+            // All Course outcomes for a course
+
             if (id == null) return new List<CourseOutcome>();
 
             List<CourseOutcome> outcomes = this.CourseOutcomes
@@ -202,10 +210,20 @@ namespace AssessmentAssistant.Data
                 .ToList();
 
             return outcomes;
-
         }
 
+        public List<AcademicCourse> GetAcademicCourses(long? id)
+        {
+            // All Academic Courses for a Program
 
+            if (id == null) return new List<AcademicCourse>();
+
+            List<AcademicCourse> outcomes = this.AcademicCourses
+                .Where(s => s.AcademicProgramId == id)
+                .ToList();
+
+            return outcomes;
+        }
 
         public string GetAcademicProgramTitle(long? AcademicProgramId)
         {
@@ -240,6 +258,15 @@ namespace AssessmentAssistant.Data
             {
                 return String.Empty;
             }
+        }
+
+        public List<CourseOffering> GetCourseOfferings(long? CourseId)
+        {
+            List<CourseOffering> list = this.CourseOfferings
+                .Where(s => s.AcademicCourseId == CourseId)
+                .ToList();
+
+            return list;
         }
 
         public string GetCourseOfferingTitle(long? CourseOfferingId)
@@ -301,9 +328,29 @@ namespace AssessmentAssistant.Data
 
             if (course == null) return null;
             return course;
-
         }
 
+        public AcademicProgram GetAcademicProgram(long? id)
+        {
+            AcademicProgram program;
+            program = this.AcademicPrograms
+                .Where(o => o.AcademicProgramId == id)
+                .FirstOrDefault();
+
+            if (program == null) return null;
+            return program;
+        }
+
+        public ProgramOutcome GetProgramOutcome(long? id)
+        {
+            ProgramOutcome outcome;
+            outcome = this.ProgramOutcomes
+                .Where(o => o.ProgramOutcomeId == id)
+                .FirstOrDefault();
+
+            if (outcome == null) return null;
+            return outcome;
+        }
         #endregion
 
         #region "Helper Methods for Pages"
@@ -344,6 +391,153 @@ namespace AssessmentAssistant.Data
             }
             catch (Exception ex) { return null; }
             return null;
+        }
+        #endregion
+
+        #region "Methods to Copy Program, Course, Outcomes"
+        /* Each measurement period must have a full copy of all elements
+           Academic Program and all dependent elements
+
+           Courses
+           Program Outcomes
+           Course Outcomes
+        
+           Each new evaluation requires a new measurement period
+
+        */
+        public bool CopyAcademicProgram(long? programid, string newmp)
+        {
+            if (programid == null) { return false; }
+            AddMeasurementPeriod(newmp);
+
+            AcademicProgram AcademicProgramSource = this.GetAcademicProgram(programid);
+            AcademicProgram AcademicProgramDest = new AcademicProgram();
+
+            // This copies ALL values from one to the other;  
+            var sourceValues = this.Entry(AcademicProgramSource).CurrentValues;
+            this.Entry(AcademicProgramDest).CurrentValues.SetValues(sourceValues);
+
+            // Change values for the desitnation
+            AcademicProgramDest.MeasurementPeriod = newmp;
+            AcademicProgramDest.AcademicProgramId = 0;
+            this.AcademicPrograms.Add(AcademicProgramDest);
+            this.SaveChanges();
+
+            long? NewId = AcademicProgramDest.AcademicProgramId;
+            if (NewId == null) { return false; }
+
+            // Copy Associated Courses
+            List<AcademicCourse> courses = this.GetAcademicCourses(programid);
+            foreach(AcademicCourse course in courses)
+            {
+                CopyAcademicCourse(course.AcademicCourseId, NewId, newmp);
+            }
+
+            // Copy Associated program Outcomes
+            List<ProgramOutcome> outcomes = this.GetProgramOutcomes(programid);
+            foreach (ProgramOutcome outcome in outcomes)
+            {
+                CopyProgramOutcome(outcome.ProgramOutcomeId, NewId, newmp);
+            }
+
+            return true;  
+        }
+
+        public bool AddMeasurementPeriod(string NewMPValue)
+        {
+            List<MeasurementPeriods> mps = this.GetMeasurementPeriods();
+            foreach (MeasurementPeriods mp in mps)
+            {
+                if (mp.MeasurementPeriod == NewMPValue)
+                {
+                    return false;
+                }
+            }
+            MeasurementPeriods NewMeasurementPeriod = new MeasurementPeriods();
+            NewMeasurementPeriod.MeasurementPeriod = NewMPValue;
+            this.MeasurementsPeriods.Add(NewMeasurementPeriod);
+            this.SaveChanges();
+
+            return true;
+        }
+
+        public bool CopyAcademicCourse(long? courseid, long? programid, string newmp)
+        {
+            if (courseid == null) { return false; }
+            if (programid == null) { return false; } 
+
+            AcademicCourse AcademicCourseSource = this.GetAcademicCourse(courseid);
+            AcademicCourse AcademicCourseDest = new AcademicCourse();
+
+            // This copies ALL values from one to the other;  
+            var sourceValues = this.Entry(AcademicCourseSource).CurrentValues;
+            this.Entry(AcademicCourseDest).CurrentValues.SetValues(sourceValues);
+
+            // Change values for the desitnation
+
+            AcademicCourseDest.AcademicProgramId = (long)programid;
+            AcademicCourseDest.MeasurementPeriod = newmp;
+            AcademicCourseDest.AcademicCourseId = 0;
+            this.AcademicCourses.Add(AcademicCourseDest);
+            this.SaveChanges();
+
+            long? NewId = AcademicCourseDest.AcademicCourseId;
+            if (NewId == null) { return false; }
+
+            // Copy Associated Course Outcomes
+            List<CourseOutcome> outcomes = this.GetCourseOutcomes(courseid);
+            foreach (CourseOutcome outcome in outcomes)
+            {
+                CopyCourseOutcome(outcome.AcademicCourseId, NewId, newmp);
+            }
+
+            return true;
+        }
+
+        public bool CopyProgramOutcome(long? outcomeid, long? programid, string newmp)
+        {
+            if (outcomeid == null) { return false; }
+            if (programid == null) { return false; }
+
+            ProgramOutcome ProgramOutcomeSource = this.GetProgramOutcome(outcomeid);
+            ProgramOutcome ProgramOutcomeDest = new ProgramOutcome();
+
+            // This copies ALL values from one to the other;  
+            var sourceValues = this.Entry(ProgramOutcomeSource).CurrentValues;
+            this.Entry(ProgramOutcomeDest).CurrentValues.SetValues(sourceValues);
+
+            // Change values for the desitnation
+
+            ProgramOutcomeDest.AcademicProgramId = (long)programid;
+            ProgramOutcomeDest.MeasurementPeriod = newmp;
+            ProgramOutcomeDest.ProgramOutcomeId = 0;
+            this.ProgramOutcomes.Add(ProgramOutcomeDest);
+            this.SaveChanges();
+
+            return true;
+        }
+
+        public bool CopyCourseOutcome(long? outcomeid, long? courseid, string newmp)
+        {
+            if (outcomeid == null) { return false; }
+            if (courseid == null) { return false; }
+
+            CourseOutcome CourseOutcomeSource = this.GetCourseOutcome(outcomeid);
+            CourseOutcome CourseOutcomeDest = new CourseOutcome();
+
+            // This copies ALL values from one to the other;  
+            var sourceValues = this.Entry(CourseOutcomeSource).CurrentValues;
+            this.Entry(CourseOutcomeDest).CurrentValues.SetValues(sourceValues);
+
+            // Change values for the desitnation
+
+            CourseOutcomeDest.AcademicCourseId = (long)courseid;
+            CourseOutcomeDest.MeasurementPeriod = newmp;
+            CourseOutcomeDest.CourseOutcomeId = 0;
+            this.CourseOutcomes.Add(CourseOutcomeDest);
+            this.SaveChanges();
+
+            return true;
         }
         #endregion
 

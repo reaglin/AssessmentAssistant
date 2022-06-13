@@ -1,0 +1,45 @@
+﻿@page
+@model AssessmentAssistant.Pages.AcademicProgram.ProgramOutcomeReportModel
+
+@{
+    ViewData["Title"] = "ProgramOutcomeReport";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Program Outcome Report</h1>
+
+<div>
+    <h4>AcademicProgram @Html.DisplayFor(model => model.AcademicProgram.ProgramTitle) (@Html.DisplayFor(model => model.AcademicProgram.MeasurementPeriod)) </h4>
+    <hr />
+    <table>
+        <tbody>
+    @foreach(var po in Model.ProgramOutcomes)
+    {<tr>
+        <td>@Html.DisplayFor(modelItem => po.OutcomeNumber)</td>
+        <td>@Html.DisplayFor(modelItem => po.OutcomeStatement)</td>
+        <td>
+        <table>
+            <tr>
+        @foreach(var c in Model.Courses){
+                        @foreach(var co in Model.CourseOutcomes[c.CourseTitle])
+                        {
+                            @if (co.ProgramOutcomeNumber == po.OutcomeNumber)
+                            {
+                                <td>@Html.DisplayFor(modelItem => c.CourseTitle)</td>
+                                <td>@Html.DisplayFor(modelItem => po.OutcomeNumber)</td>
+                                <td>@Html.DisplayFor(modelItem => po.OutcomeStatement)</td>
+                            }
+                        }
+                    }
+        </tr>
+        </table>
+      </td>
+    </tr>
+    }
+    </tbody>
+    </table>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.AcademicProgram?.AcademicProgramId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

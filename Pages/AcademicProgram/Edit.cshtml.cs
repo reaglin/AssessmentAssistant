@@ -32,7 +32,7 @@ namespace AssessmentAssistant.Pages.AcademicProgram
 
             AcademicProgram = await _context.AcademicPrograms.FirstOrDefaultAsync(m => m.AcademicProgramId == id);
 
-            MeasurementPeriodList = _context.GetMeasurementPeriods();
+            MeasurementPeriodList = _context.GetMeasurementPeriodsList();
 
             if (AcademicProgram == null)
             {
@@ -82,7 +82,7 @@ namespace AssessmentAssistant.Pages.AcademicProgram
         }
         public IEnumerable<SelectListItem> MeasurementPeriods()
         {
-            return _context.GetMeasurementPeriods();
+            return _context.GetMeasurementPeriodsList();
         }
     }
 }

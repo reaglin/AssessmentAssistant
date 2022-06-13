@@ -22,7 +22,7 @@ namespace AssessmentAssistant.Pages.AcademicProgram
 
         public IActionResult OnGet()
         {
-            MeasurementPeriodList = _context.GetMeasurementPeriods();
+            MeasurementPeriodList = _context.GetMeasurementPeriodsList();
 
             if (!Validate()) return RedirectToPage("../Index");
 

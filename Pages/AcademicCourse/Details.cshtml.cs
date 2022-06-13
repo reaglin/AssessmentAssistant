@@ -16,6 +16,8 @@ namespace AssessmentAssistant.Pages.AcademicCourse
         //private readonly AssessmentAssistant.Data.ApplicationDbContext _context;
         public List<AssessmentAssistant.Models.CourseOutcome> CourseOutcomes { get; set; }
 
+        public List<AssessmentAssistant.Models.CourseOffering> CourseOfferings { get; set; }
+
 
         public DetailsModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
@@ -46,6 +48,8 @@ namespace AssessmentAssistant.Pages.AcademicCourse
             programid = (long)AcademicCourse.AcademicProgramId;
 
             CourseOutcomes = _context.GetCourseOutcomes(id);
+
+            CourseOfferings = _context.GetCourseOfferings(id);
 
             return Page();
         }
