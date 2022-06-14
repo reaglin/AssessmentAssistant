@@ -6,11 +6,11 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Course Outcomes for @Model.AcademicCourseTitle() (@Model.MeasurementPeriod())</h1>
-<h4>@ViewData["CourseTitle"]</h4>
+<h1>Course Outcomes Information</h1>
+<h4>@ViewData["CourseTitle"] (@Model.MeasurementPeriod())</h4>
 
 <p>
-    <a href="CourseOutcome/Create?id=@Model.courseid">Create New Course Outcome</a>
+    <a href="Create?id=@Model.courseid">Create New Course Outcome</a>
 </p>
 <table class="table">
     <thead>

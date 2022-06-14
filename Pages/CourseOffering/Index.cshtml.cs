@@ -27,7 +27,8 @@ namespace AssessmentAssistant.Pages.CourseOffering
             if (_context.CourseOfferings != null)
             {
                 CourseOffering = await _context.CourseOfferings
-                .Include(c => c.AcademicCourse).ToListAsync();
+                    .Where(c => c.AcademicCourseId == id)
+                    .Include(c => c.AcademicCourse).ToListAsync();
             }
         }
     }

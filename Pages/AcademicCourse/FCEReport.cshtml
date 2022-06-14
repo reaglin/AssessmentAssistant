@@ -1,0 +1,56 @@
+﻿@page
+@model AssessmentAssistant.Pages.AcademicCourse.FCEReportModel
+
+@{
+    ViewData["Title"] = "FCEReport";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h4>Faculty Course Evaluation</h4>
+    <table>
+<tr>
+    <td>
+        <ul>
+            <li>
+            @Html.DisplayNameFor(model => model.AcademicCourse.CourseTitle):
+            @Html.DisplayFor(model => model.AcademicCourse.CourseTitle)
+        </li>
+        <li>
+            @Html.DisplayNameFor(model => model.AcademicCourse.CourseDescription):
+            @Html.DisplayFor(model => model.AcademicCourse.CourseDescription)
+        </li>
+        <li>
+            @Html.DisplayNameFor(model => model.AcademicCourse.CourseCoordinatorID):
+            @Html.DisplayFor(model => model.AcademicCourse.CourseCoordinatorID)
+        </li>
+        <li>
+            @Html.DisplayNameFor(model => model.AcademicCourse.AcademicProgram):
+            @Html.DisplayFor(model => model.AcademicCourse.AcademicProgram.ProgramTitle)
+
+        </li>
+        <li>
+            @Html.DisplayNameFor(model => model.AcademicCourse.MeasurementPeriod)
+            @Html.DisplayFor(model => model.AcademicCourse.MeasurementPeriod)
+        </li>
+        </ul>
+    </td>
+    <td>
+        <ul>
+        @foreach(KeyValuePair<string, int> item in Model.Grades){
+        <li>
+            @item.Key: @item.Value
+        </li>
+        }
+        </ul>
+    </td>
+
+    </tr>
+    </table>
+    <hr />
+
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.AcademicCourse?.AcademicCourseId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

@@ -61,7 +61,7 @@ namespace AssessmentAssistant.Pages.OutcomeMeasure
             _context.OutcomeMeasures.Add(OutcomeMeasure);
             await _context.SaveChangesAsync();
 
-            return Redirect("./Index?id=" + offeringid.ToString());
+            return Redirect("./Index?id=" + OutcomeMeasure.CourseOfferingId.ToString());
         }
     }
 }

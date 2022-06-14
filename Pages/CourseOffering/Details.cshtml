@@ -87,11 +87,32 @@
         of your course. You can also enter measures for any of the outcomes of your course that you meaasured during this
         course offering.
     </p>   
-    <br/><br/>
-    <a asp-page="./Edit" asp-route-id="@Model.CourseOffering?.CourseOfferingId">Edit Course Offering</a>
+    <hr />
+    <h4>Course Outcomes and Measures</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Outcome Number</th>
+                <th>Outcome Statement</th>
+                <td>Number of Measures</td>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in @Model.CourseOutcomes)
+            {
+                <tr>
+                  <td>@Html.DisplayFor(modelItem => item.OutcomeNumber)</td>
+                  <td>@Html.DisplayFor(modelItem => item.OutcomeStatement)</td>
+                  <td>@Model.NumberMeasures(item.OutcomeNumber)</td>
+                </tr>          
+            }
+        </tbody>
+    </table>
     <br/><br/>    
     <a href="../OutcomeMeasure/Index?id=@Model.offeringid">Enter a Measure for Course Offering Outcomes</a>
-
+    <br/><br/>
+    <a asp-page="./Edit" asp-route-id="@Model.CourseOffering?.CourseOfferingId">Edit Course Offering</a>
 </div>
 
 

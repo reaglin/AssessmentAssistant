@@ -33,6 +33,7 @@ namespace AssessmentAssistant.Pages
         public long? courseid;
         public long? programid;
         public long? offeringid;
+        public string measurementperiod = "";
         public string UserId()
         {
             return _context.UserId(User);
@@ -41,7 +42,8 @@ namespace AssessmentAssistant.Pages
         public string MeasurementPeriod()
         {
             // This is set by he user as a default setting. 
-            return _context.GetDefaultMeasurementPeriod(User.Identity.Name);
+            measurementperiod = _context.GetDefaultMeasurementPeriod(User.Identity.Name);
+            return measurementperiod;
         }
 
         //public List<SelectListItem> MeasurementPeriods()

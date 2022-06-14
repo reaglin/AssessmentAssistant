@@ -27,12 +27,17 @@ namespace AssessmentAssistant.Pages.AcademicProgram
         public async Task<IActionResult> OnGetAsync(long? id)
         {
             programid = id;
+            measurementperiod = this.MeasurementPeriod();
 
-            ProgramOutcomes = _context.GetProgramOutcomes(programid);
-            Courses = _context.GetAcademicCourses(programid);
+            // Get all the elements of the report 
+            ProgramOutcomes = _context.GetProgramOutcomes(programid, measurementperiod);
+
+            Courses = _context.GetAcademicCourses(programid, measurementperiod);
+            
             CourseOutcomes = new Dictionary<string, List<Models.CourseOutcome>>();
+            
             foreach (AssessmentAssistant.Models.AcademicCourse course in Courses) { 
-                CourseOutcomes[course.CourseTitle] = _context.GetCourseOutcomes(course.AcademicCourseId);
+                CourseOutcomes[course.CourseTitle] = _context.GetCourseOutcomes(course.AcademicCourseId, measurementperiod);
             }
 ;
             if (id == null || _context.AcademicPrograms == null)
@@ -51,5 +56,7 @@ namespace AssessmentAssistant.Pages.AcademicProgram
             }
             return Page();
         }
+
+
     }
 }

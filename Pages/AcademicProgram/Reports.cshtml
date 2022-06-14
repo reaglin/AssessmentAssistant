@@ -10,7 +10,12 @@
     (@Html.DisplayFor(model => model.AcademicProgram.MeasurementPeriod))</h4>
 
 <div>
-    <a href="./ProgramOutcomeReport?id=@Model.programid">Program Outcome Report</a>
+    <a href="./ProgramOutcomeReport?id=@Model.programid">Program Outcome Report</a> - 
+    <p>This report shows all the outcomes for the current measurement period and all the aligned course 
+        outcomes for the same period. This is simply the mapping of program to course outcomes.
+    </p>
+    <br/>
+
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.AcademicProgram?.AcademicProgramId">Edit</a> |

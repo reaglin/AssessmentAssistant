@@ -19,6 +19,7 @@ namespace AssessmentAssistant.Pages.CourseOffering
         }
 
       public AssessmentAssistant.Models.CourseOffering CourseOffering { get; set; } = default!; 
+      public List<AssessmentAssistant.Models.CourseOutcome> CourseOutcomes { get; set; }   
 
         public async Task<IActionResult> OnGetAsync(long? id)
         {
@@ -37,9 +38,18 @@ namespace AssessmentAssistant.Pages.CourseOffering
             {
                 offeringid = id;
                 courseid = courseoffering.AcademicCourseId;
+                measurementperiod = this.MeasurementPeriod();
+
                 CourseOffering = courseoffering;
+                CourseOutcomes = _context.GetCourseOutcomes(courseid, measurementperiod);
             }
             return Page();
+        }
+
+        public string NumberMeasures(int co)
+        {
+            List<AssessmentAssistant.Models.OutcomeMeasure> om = _context.GetOutcomeMeasures(offeringid, co, measurementperiod);
+            return om.Count().ToString();
         }
     }
 }

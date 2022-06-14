@@ -44,7 +44,7 @@ namespace AssessmentAssistant.Pages.CourseOffering
             _context.CourseOfferings.Add(CourseOffering);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return Redirect("../AcademicCourse/Details?id="+CourseOffering.AcademicCourseId.ToString());
         }
     }
 }

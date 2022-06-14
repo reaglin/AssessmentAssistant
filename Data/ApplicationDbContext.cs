@@ -119,7 +119,7 @@ namespace AssessmentAssistant.Data
             return semesterlist;
         }
 
-        public string GetmeasurementPeriodForCourse(long? id)
+        public string GetMeasurementPeriodForCourse(long? id)
         {
             if (id == null) return string.Empty;
 
@@ -128,6 +128,8 @@ namespace AssessmentAssistant.Data
                 .First()
                 .MeasurementPeriod; 
         }
+
+
 
         public List<SelectListItem> GetAcademicPrograms()
         {
@@ -186,43 +188,89 @@ namespace AssessmentAssistant.Data
             return outcome;
         }
 
-        public List<ProgramOutcome> GetProgramOutcomes(long? id)
+        public List<ProgramOutcome> GetProgramOutcomes(long? id, string mp = "")
         {
             // All program outcomes for a program
 
             if (id == null) return new List<ProgramOutcome>();
 
-            List<ProgramOutcome> outcomes = this.ProgramOutcomes
-                .Where(s => s.AcademicProgramId == id)
-                .ToList();
-
-            return outcomes;
+            if (mp == "") { 
+                List<ProgramOutcome> outcomes = this.ProgramOutcomes
+                    .Where(s => s.AcademicProgramId == id)
+                    .OrderBy(s => s.OutcomeNumber)
+                    .ToList();
+                return outcomes;
+            }
+            else
+            {
+                List<ProgramOutcome> outcomes = this.ProgramOutcomes
+                    .Where(s => s.AcademicProgramId == id)
+                    .Where(s => s.MeasurementPeriod == mp)
+                    .OrderBy(s => s.OutcomeNumber)
+                    .ToList();
+                return outcomes;
+            }
+            return new List<ProgramOutcome>();
 
         }
-        public List<CourseOutcome> GetCourseOutcomes(long? id)
+        public List<CourseOutcome> GetCourseOutcomes(long? id, string mp = "")
         {
             // All Course outcomes for a course
 
             if (id == null) return new List<CourseOutcome>();
+            if (mp == "") { 
+                List<CourseOutcome> outcomes = this.CourseOutcomes
+                    .Where(s => s.AcademicCourseId == id)
+                    .ToList();
+                return outcomes;
+            }
+            else
+            {
+                List<CourseOutcome> outcomes = this.CourseOutcomes
+                    .Where(s => s.AcademicCourseId == id)
+                    .Where(s => s.MeasurementPeriod == mp)
+                    .ToList();
+                return outcomes;
+            }
 
-            List<CourseOutcome> outcomes = this.CourseOutcomes
-                .Where(s => s.AcademicCourseId == id)
-                .ToList();
-
-            return outcomes;
+            return new List<CourseOutcome>(); ;
         }
 
-        public List<AcademicCourse> GetAcademicCourses(long? id)
+        public List<AcademicCourse> GetAcademicCourses(long? id, string mp = "")
         {
             // All Academic Courses for a Program
 
             if (id == null) return new List<AcademicCourse>();
 
-            List<AcademicCourse> outcomes = this.AcademicCourses
-                .Where(s => s.AcademicProgramId == id)
+            if (mp == "") { 
+                List<AcademicCourse> courses = this.AcademicCourses
+                    .Where(s => s.AcademicProgramId == id)
+                    .ToList();
+                return courses;
+            }
+            else
+            {
+                List<AcademicCourse> courses = this.AcademicCourses
+                    .Where(s => s.AcademicProgramId == id)
+                    .Where(s => s.MeasurementPeriod == mp)
+                    .ToList();
+                return courses;
+
+            }
+            return new List<AcademicCourse>(); ;
+        }
+
+        public List<OutcomeMeasure> GetOutcomeMeasures(long? courseofferingid, int outcomenumber, string mp = "")
+        {
+            if (courseofferingid == null) return new List<OutcomeMeasure>();
+
+            List<OutcomeMeasure> measures = this.OutcomeMeasures
+                .Where(s => s.CourseOfferingId == courseofferingid)
+                .Where(s => s.CourseOutcomeNumber == outcomenumber)
+                .Where(s => s.MeasurementPeriod == mp)
                 .ToList();
 
-            return outcomes;
+            return measures;
         }
 
         public string GetAcademicProgramTitle(long? AcademicProgramId)
@@ -260,7 +308,7 @@ namespace AssessmentAssistant.Data
             }
         }
 
-        public List<CourseOffering> GetCourseOfferings(long? CourseId)
+        public List<CourseOffering> GetCourseOfferings(long? CourseId, string mp = "")
         {
             List<CourseOffering> list = this.CourseOfferings
                 .Where(s => s.AcademicCourseId == CourseId)

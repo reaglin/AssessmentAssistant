@@ -58,7 +58,7 @@
     </tbody>
 </table>
 <hr/>
-    <a asp-page="../AcademicCourse/Create"asp-route-id="@Model.AcademicProgram.AcademicProgramId">Add a Course to the Academic Program</a>
+    <a href="../AcademicCourse/Create?id=@Model.AcademicProgram.AcademicProgramId">Add a Course to the Academic Program</a>
     <hr/>
 <h2> Program Outcomes for @Html.DisplayFor(model => model.AcademicProgram.ProgramTitle) (@Html.DisplayFor(model => model.AcademicProgram.MeasurementPeriod))</h2>
 <div>

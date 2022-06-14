@@ -11,27 +11,38 @@
 <div>
     <h4>AcademicProgram @Html.DisplayFor(model => model.AcademicProgram.ProgramTitle) (@Html.DisplayFor(model => model.AcademicProgram.MeasurementPeriod)) </h4>
     <hr />
-    <table>
+    <table style="border:solid">
+        <thead>
+            <tr style="border:medium">
+                <th>PO Number</th>
+                <th>Outcome Statement</th>
+                <th>Courses and Course Outcomes</th>
+            </tr>
+        </thead>
         <tbody>
     @foreach(var po in Model.ProgramOutcomes)
-    {<tr>
+    {<tr style="border:medium">
         <td>@Html.DisplayFor(modelItem => po.OutcomeNumber)</td>
         <td>@Html.DisplayFor(modelItem => po.OutcomeStatement)</td>
         <td>
         <table>
-            <tr>
+            
         @foreach(var c in Model.Courses){
                         @foreach(var co in Model.CourseOutcomes[c.CourseTitle])
                         {
                             @if (co.ProgramOutcomeNumber == po.OutcomeNumber)
-                            {
-                                <td>@Html.DisplayFor(modelItem => c.CourseTitle)</td>
-                                <td>@Html.DisplayFor(modelItem => po.OutcomeNumber)</td>
-                                <td>@Html.DisplayFor(modelItem => po.OutcomeStatement)</td>
+                            {<tr>
+                                <td width="25%">
+                                 @Html.DisplayFor(modelItem => c.CourseTitle)<br/>
+                                 Outcome @Html.DisplayFor(modelItem => co.OutcomeNumber)
+                                 </td>
+                                <td>@Html.DisplayFor(modelItem => co.OutcomeStatement)</td>
+
+                                </tr>
                             }
                         }
                     }
-        </tr>
+        
         </table>
       </td>
     </tr>

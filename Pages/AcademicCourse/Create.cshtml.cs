@@ -21,8 +21,9 @@ namespace AssessmentAssistant.Pages.AcademicCourse
             _context = context;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(long? id)
         {
+            if (id != null) programid = id;
             if (!Validate()) return RedirectToPage("../Index");
 
             ViewData["AcademicProgramId"] = new SelectList(_context.AcademicPrograms, "AcademicProgramId", "AcademicProgramId");
@@ -35,6 +36,8 @@ namespace AssessmentAssistant.Pages.AcademicCourse
             MeasurementPeriodList = _context.GetMeasurementPeriodsList();
 
             SemesterList = _context.GetSemesters();
+
+
 
             return Page();
         }
@@ -54,7 +57,7 @@ namespace AssessmentAssistant.Pages.AcademicCourse
             _context.AcademicCourses.Add(AcademicCourse);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return Redirect("../AcademicProgram/Details?id=" + AcademicCourse.AcademicProgramId.ToString());
         }
 
     }
