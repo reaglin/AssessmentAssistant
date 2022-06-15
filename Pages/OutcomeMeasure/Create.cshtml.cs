@@ -25,6 +25,8 @@ namespace AssessmentAssistant.Pages.OutcomeMeasure
 
         public IActionResult OnGet(long? id)
         {
+            Authenticate();
+
             offeringid = id;
 
             AssessmentAssistant.Models.CourseOffering offering = _context.GetCourseOffering(offeringid);

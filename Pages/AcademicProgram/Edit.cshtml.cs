@@ -12,9 +12,9 @@ using AssessmentAssistant.Models;
 
 namespace AssessmentAssistant.Pages.AcademicProgram
 {
-    public class EditModel : PageModel
+    public class EditModel : AAPageModel
     {
-        public readonly AssessmentAssistant.Data.ApplicationDbContext _context;
+
         public List<SelectListItem> MeasurementPeriodList { get; set; }
         public EditModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
@@ -25,6 +25,7 @@ namespace AssessmentAssistant.Pages.AcademicProgram
         public AssessmentAssistant.Models.AcademicProgram AcademicProgram { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            Authenticate();
             if (id == null)
             {
                 return NotFound();

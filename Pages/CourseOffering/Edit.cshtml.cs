@@ -25,6 +25,8 @@ namespace AssessmentAssistant.Pages.CourseOffering
 
         public async Task<IActionResult> OnGetAsync(long? id)
         {
+            Authenticate();
+
             if (id == null || _context.CourseOfferings == null)
             {
                 return NotFound();

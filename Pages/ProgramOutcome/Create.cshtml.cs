@@ -24,6 +24,8 @@ namespace AssessmentAssistant.Pages.ProgramOutcome
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            Authenticate();
+
             // The id here is the id of the Academic program for the outcome
             if (id == null) return NotFound();
 

@@ -101,7 +101,6 @@
             </td>
             <td>
                 <a asp-page="../CourseOutcome/Edit" asp-route-id="@item.CourseOutcomeId">Edit Outcome</a> |
-                <a asp-page="../CourseOutcome/Details" asp-route-id="@item.CourseOutcomeId">Course Outcome Details</a> |
                 <a asp-page="../CourseOutcome/Delete" asp-route-id="@item.CourseOutcomeId">Delete Outcome</a>
             </td>
         </tr>
@@ -145,7 +144,7 @@
             </td>
 
             <td>
-                <a asp-page="../CourseOffering/Details" asp-route-id="@item.CourseOfferingId">Enter Measures for this Course Offering</a> |
+                <a asp-page="../CourseOffering/Details" asp-route-id="@item.CourseOfferingId"><b>Enter Measures for this Course Offering</b></a> |
                 <a asp-page="../CourseOffering/Edit" asp-route-id="@item.CourseOfferingId">Edit</a> |
                 <a asp-page="../CourseOffering/Delete" asp-route-id="@item.CourseOfferingId">Delete</a>
             </td>
@@ -158,8 +157,13 @@
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.AcademicCourse?.AcademicCourseId">Edit Course</a> |
     <a href="../CourseOffering/Index?id=@Model.courseid">View/Enter Offerings for Course</a> |
-
-    <a asp-page="./Index">View Full List of Courses</a>
+</div>
+<hr/>
+<div>
+    <h4>Reports for Course</h4>
+    <ul>
+        <li><a href="./FCEReport?id=@Model.courseid">Faculty Course Evaluation Report</a></li>
+    </ul>
 </div>
 <div></div>
 

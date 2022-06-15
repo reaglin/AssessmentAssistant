@@ -10,9 +10,8 @@ using AssessmentAssistant.Models;
 
 namespace AssessmentAssistant.Pages.CourseOffering
 {
-    public class DeleteModel : PageModel
+    public class DeleteModel : AAPageModel
     {
-        private readonly AssessmentAssistant.Data.ApplicationDbContext _context;
 
         public DeleteModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
@@ -24,6 +23,8 @@ namespace AssessmentAssistant.Pages.CourseOffering
 
         public async Task<IActionResult> OnGetAsync(long? id)
         {
+            Authenticate();
+
             if (id == null || _context.CourseOfferings == null)
             {
                 return NotFound();

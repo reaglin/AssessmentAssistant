@@ -24,6 +24,8 @@ namespace AssessmentAssistant.Pages.CourseOutcome
 
         public async Task<IActionResult> OnGetAsync(long? id)
         {
+            Authenticate();
+
             courseid = id;
             var academiccourse = await _context.AcademicCourses.FirstOrDefaultAsync(m => m.AcademicCourseId == id);
             if (academiccourse == null)

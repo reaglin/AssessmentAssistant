@@ -24,6 +24,8 @@ namespace AssessmentAssistant.Pages.OutcomeMeasure
 
         public async Task<IActionResult> OnGetAsync(long? id)
         {
+            Authenticate();
+
             if (id == null || _context.OutcomeMeasures == null)
             {
                 return NotFound();

@@ -24,18 +24,12 @@ namespace AssessmentAssistant.Pages.AcademicCourse
 
         public List<AssessmentAssistant.Models.CourseOutcome> CourseOutcomes { get; set; }
 
-        public Dictionary<string, int> Grades = new Dictionary<string, int>()
-        {
-            { "A Grades", 0 },
-            { "B Grades", 0 },
-            { "C Grades", 0 },
-            { "D Grades", 0 },
-            { "F Grades", 0 },
-            { "W Grades", 0 }
-        };
+        public List<AssessmentAssistant.Models.OutcomeMeasure> OutcomeMeasures { get; set; }
 
 
+        public Dictionary<string, int> Grades = AssessmentAssistant.Models.TablesForReports.GradesDictionary();
 
+        public Dictionary<string, AssessmentAssistant.Models.MeasuresTable> MeasurementsDictionary = AssessmentAssistant.Models.TablesForReports.MeasuresDictionary();
         public async Task<IActionResult> OnGetAsync(long? id)
         {
             
@@ -48,9 +42,13 @@ namespace AssessmentAssistant.Pages.AcademicCourse
             measurementperiod = MeasurementPeriod();
 
             CourseOfferings = _context.GetCourseOfferings(courseid, measurementperiod);
-            FillGrades();
+            TablesForReports.FillGrades(CourseOfferings, Grades);
 
             CourseOutcomes = _context.GetCourseOutcomes(courseid, measurementperiod);
+
+            OutcomeMeasures = _context.GetOutcomeMeasures(CourseOfferings[0].CourseOfferingId, measurementperiod);
+
+            MeasurementsDictionary = TablesForReports.FillMeasuresDictionary(measurementperiod, (long)courseid, CourseOutcomes, CourseOfferings, OutcomeMeasures);
             
             var academiccourse = await _context.AcademicCourses.FirstOrDefaultAsync(m => m.AcademicCourseId == id);
             if (academiccourse == null)
@@ -64,17 +62,9 @@ namespace AssessmentAssistant.Pages.AcademicCourse
             return Page();
         }
 
-         public void FillGrades()
-        {
-            foreach(var course in CourseOfferings)
-            {
-                Grades["A Grades"] += (int)course.Number_A;
-                Grades["B Grades"] += (int)course.Number_B;
-                Grades["C Grades"] += (int)course.Number_C;
-                Grades["D Grades"] += (int)course.Number_D;
-                Grades["F Grades"] += (int)course.Number_F;
-                Grades["W Grades"] += (int)course.Number_W;
-            }
-        }
+
+
+
+
     }
 }

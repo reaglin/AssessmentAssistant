@@ -11,10 +11,9 @@ using AssessmentAssistant.Models;
 
 namespace AssessmentAssistant.Pages.AcademicCourse
 {
-    public class EditModel : PageModel
+    public class EditModel : AAPageModel
     {
         private readonly AssessmentAssistant.Data.ApplicationDbContext _context;
-
         public List<SelectListItem> AcademicProgramList { get; set; }
         public EditModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
@@ -26,6 +25,7 @@ namespace AssessmentAssistant.Pages.AcademicCourse
 
         public async Task<IActionResult> OnGetAsync(long? id)
         {
+            Authenticate();
             if (id == null || _context.AcademicCourses == null)
             {
                 return NotFound();

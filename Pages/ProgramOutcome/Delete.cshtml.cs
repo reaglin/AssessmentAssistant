@@ -24,6 +24,8 @@ namespace AssessmentAssistant.Pages.ProgramOutcome
 
         public async Task<IActionResult> OnGetAsync(long? id)
         {
+            Authenticate();
+
             if (id == null || _context.ProgramOutcomes == null)
             {
                 return NotFound();

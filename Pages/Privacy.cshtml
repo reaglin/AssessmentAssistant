@@ -1,8 +1,56 @@
 ﻿@page
 @model PrivacyModel
 @{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "About Assessment Assistant";
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<p>Assessment Assistant is a program ritten in .Net Core (Microsoft Entity Framework) to assist in outcomes assessment. This software is open source and is freely available
+    on Github at <a href= "https://github.com/ID/AssessmentAssistant" target="_new">https://github.com/ID/AssessmentAssistant</a>. Download of the software source 
+    code, instructions for installation, and terms and conditions along with licensing are at this site.</p>
+    <br/>
+    <p>Assessment Assistant follows the outcomes assessment model used my many accreditation agiencies and ABET. Familiarity with the following terms will make the use of Assessment
+        Assistant much easier. 
+    </p>
+    <ul>
+        <li><b>Academic Progeam</b> - An academic program can refer to any program leading to a degree such as an AS or a BS degree. For the purposes of Assessment Assistant an 
+            academic program should be a program with a number of Program Outcomes (also called Student Learning Outcomes) whihc must be assessed on a regular basis.</li>
+        <li><b>Program Outcome</b> - A program outcome is a statement of a learning outcome for students as a result of the completion of the academic program. Many institutions list
+        their program outcomes in their course catalog. These are also often referred to as student learning outcomes.</li>
+        <li><b>Academic Course</b> - Academic programs are made up of academic courses and other requirements that lead a student to a degree or a certificate.</li>
+        <li><b>Course Outcome</b> - A course outcome is a statement of a learning outcome that is the result of the completion of an academic courses. A course outcome is typically 
+        made up of a statement of level of learning (usually a Bloom's taxonomy verb) </li>
+        <li><b>Course Offering</b> - To measure course outcomes we need to take measures when a course is being offered. Because there are multiple offerings (course sections 
+        offered during different semesters and in different locations with different tecachers) it is important to know when the measures are being taken and where from is important.</li>
+        <li><b>Outcome Measure</b></li> - When a course is offered there is an opportunity to measure how well students are meeting the outcomes. This is typically done by establishing
+        a measure in a class where we can look at student performance. 
+    </ul>
+    <hr />
+    <h4>Important Items for Users</h4>
+    <br/>
+    1. <b>Measurement Period</b> - These are items that users should know and understand when using the Assessment Assistant. Most users will be course corrdinators who are the ones that have responsibility for 
+    entering course outcomes and measures. All programs, courses, outcomes, and measures exist within a <b>measurement period</b>. Thre nature of outcome assessment is that it is a 
+    periodic set of measures and the meaures are for a defined period of time. Becuase outcomes and programs can change from one measurement period to another - each measurement period 
+    has a full set of entires for all of these fields (they are duplicated). For this reason it is important to define the measurement period that you are working in for program and courses.
+    <br/>
+    2. <b>Limitations</b> - One limitation in the design of the program was a 1:1 relationship between course outcomes and program outcomes. A course outcome may only have a mapping to a single 
+    program outcome. 
+    <hr/>
+    <h4>Installation</h4>
+    <br/>
+    This is a .Net Core server program. Instructions on the preparation of a hosting machine are at
+    <a href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-iis?view=aspnetcore-6.0&tabs=visual-studio">
+    https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-iis?view=aspnetcore-6.0&tabs=visual-studio</a> 
+    <br/>
+    This application also depends upon a backing database. The database creation script is located in the project in the directory Database. This is a SQL server script for creation 
+    of the database in SQL Server. 
+    <br/>
+    The appsettings.json file of the project contains the database connection string that must be set to the active version of the database for correct program operation. 
+    <hr/>
+    <h4>Enahancements</h4>
+    <br/>
+    Enhancements to the program are ongoing as the program is used in practice. The author of the program can be reached at ronald.eaglin@daytonastate.edu Institutions requesting functional 
+    enhancements can contract with the author to provide these enhancements. Under the licensing of this application any enhancements whether paid or free become part of the programa and 
+    are made available to futrure users of the program. 
+
+

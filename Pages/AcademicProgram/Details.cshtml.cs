@@ -11,9 +11,8 @@ using AssessmentAssistant.Models;
 
 namespace AssessmentAssistant.Pages.AcademicProgram
 {
-    public class DetailsModel : PageModel
+    public class DetailsModel : AAPageModel
     {
-        private readonly AssessmentAssistant.Data.ApplicationDbContext _context;
 
         public DetailsModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
@@ -27,6 +26,7 @@ namespace AssessmentAssistant.Pages.AcademicProgram
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            programid = id;
             if (id == null)
             {
                 return NotFound();

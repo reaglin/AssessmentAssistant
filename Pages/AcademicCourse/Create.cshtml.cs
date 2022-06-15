@@ -23,6 +23,8 @@ namespace AssessmentAssistant.Pages.AcademicCourse
 
         public IActionResult OnGet(long? id)
         {
+            Authenticate();
+
             if (id != null) programid = id;
             if (!Validate()) return RedirectToPage("../Index");
 

@@ -4,13 +4,30 @@
 @{
     ViewData["Title"] = "FCEReport";
     Layout = "~/Pages/Shared/_Layout.cshtml";
+}<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
 }
 
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+
+th {
+  background-color: #dddddd;
+}
+</style>
 <div>
     <h4>Faculty Course Evaluation</h4>
-    <table>
+<table>
 <tr>
     <td>
+        <h4>Course Information</h4>
         <ul>
             <li>
             @Html.DisplayNameFor(model => model.AcademicCourse.CourseTitle):
@@ -36,6 +53,7 @@
         </ul>
     </td>
     <td>
+        <h4>Grade Distribution</h4>
         <ul>
         @foreach(KeyValuePair<string, int> item in Model.Grades){
         <li>
@@ -44,13 +62,69 @@
         }
         </ul>
     </td>
-
     </tr>
-    </table>
-    <hr />
 
+    <tr ><td colspan="2">
+    <h4>Outcome Measurements</h4>
+    <table>
+        <thead>
+            <tr>
+                <td>Outcome</td>
+                <td>Statement</td>
+                <td>PO</td>
+                <td>Assessment Type</td>
+                <td>Measure</td>
+                <td>N</td>
+                <td>N Above Threshold</td>
+                <td>% Above Threshold</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.MeasurementsDictionary){
+                <tr>
+                    <td>@item.Value.CourseOutcomeNumber</td>
+                    <td>@item.Value.CourseOutcomeStatement</td>
+                    <td>@item.Value.ProgramOutcomeNumber</td>
+                    <td>@item.Value.AssessmentType</td>
+                    <td>@item.Value.AssessmentMeasure</td>
+                    <td>@item.Value.N</td>
+                    <td>@item.Value.N_AboveThreshold</td>
+                    <td>@string.Format("{0:N2}%", item.Value.Percent_N_Above_Threshold)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </td></tr>
+    <tr><td colspan="2">
+        <h4>Faculty Comments on Course</h4>
+        <table>
+            <thead>
+                <tr>
+                    <td>Item</td>
+                    <td>Impression</td>
+                </tr>
+            </thead>
+            <tbody>
+                        @foreach(var item in Model.CourseOfferings)
+                        {<tr>
+                            <td>Issues Faced</td>
+                            <td>@item.IssuesFaced</td>
+                         </tr>
+                         <tr>
+                            <td>Proposed Improvements</td>
+                            <td>@item.ProposedImprovements</td>
+                         </tr>
+                          <tr>
+                            <td>Results of Improvement</td>
+                            <td>@item.ResultsOfImprovements</td>
+                         </tr>
+                        }      
+                    </tbody>
+        </table>
+    </td></tr>
+
+</table>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.AcademicCourse?.AcademicCourseId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a href="./Details?id=@Model.courseid">Back to List</a>
 </div>

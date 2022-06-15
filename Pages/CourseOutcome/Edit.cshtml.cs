@@ -11,9 +11,8 @@ using AssessmentAssistant.Models;
 
 namespace AssessmentAssistant.Pages.CourseOutcome
 {
-    public class EditModel : PageModel
+    public class EditModel : AAPageModel
     {
-        private readonly AssessmentAssistant.Data.ApplicationDbContext _context;
 
         public EditModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
@@ -25,6 +24,8 @@ namespace AssessmentAssistant.Pages.CourseOutcome
 
         public async Task<IActionResult> OnGetAsync(long? id)
         {
+            Authenticate();
+
             if (id == null || _context.CourseOutcomes == null)
             {
                 return NotFound();

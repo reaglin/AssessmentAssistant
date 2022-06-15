@@ -57,6 +57,11 @@ namespace AssessmentAssistant.Pages
         //    return list;
         //}
 
+        public void Authenticate()
+        {
+            if (User == null) Redirect("../Index");
+            if (!User.Identity.IsAuthenticated) Redirect("../Index");
+        }
         public string AcademicProgramTitle()
         {
 

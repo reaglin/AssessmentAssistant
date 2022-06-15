@@ -31,6 +31,7 @@ namespace AssessmentAssistant.Pages.AcademicProgram
 
         public async Task<IActionResult> OnGetAsync(long? id)
         {
+            Authenticate();
             if (id == null || _context.AcademicPrograms == null)
             {
                 return NotFound();

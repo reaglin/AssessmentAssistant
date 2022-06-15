@@ -14,7 +14,6 @@ namespace AssessmentAssistant.Pages.AcademicProgram
     {
         //public readonly AssessmentAssistant.Data.ApplicationDbContext _context;
         
-        public List<SelectListItem> MeasurementPeriodList { get; set; }
         public CreateModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
             _context = context;
@@ -22,6 +21,7 @@ namespace AssessmentAssistant.Pages.AcademicProgram
 
         public IActionResult OnGet()
         {
+            Authenticate();
             MeasurementPeriodList = _context.GetMeasurementPeriodsList();
 
             if (!Validate()) return RedirectToPage("../Index");

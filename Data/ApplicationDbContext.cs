@@ -273,6 +273,18 @@ namespace AssessmentAssistant.Data
             return measures;
         }
 
+        public List<OutcomeMeasure> GetOutcomeMeasures(long? courseofferingid, string mp = "")
+        {
+            if (courseofferingid == null) return new List<OutcomeMeasure>();
+
+            List<OutcomeMeasure> measures = this.OutcomeMeasures
+                .Where(s => s.CourseOfferingId == courseofferingid)
+                .Where(s => s.MeasurementPeriod == mp)
+                .ToList();
+
+            return measures;
+        }
+
         public string GetAcademicProgramTitle(long? AcademicProgramId)
         {
             if (AcademicProgramId == null) return string.Empty;

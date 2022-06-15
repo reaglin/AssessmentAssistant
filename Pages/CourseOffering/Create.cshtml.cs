@@ -20,7 +20,7 @@ namespace AssessmentAssistant.Pages.CourseOffering
 
         public IActionResult OnGet(long? id)
         {
-
+            Authenticate();
             courseid = id;
 
             SemesterList = _context.GetSemesters();
