@@ -48,5 +48,10 @@ namespace AssessmentAssistant.Pages.AcademicProgram
 
             return Page();
         }
+
+        public string FillCell(AssessmentAssistant.Models.ProgramOutcome po, AssessmentAssistant.Models.AcademicCourse ac)
+        {
+            return _context.CoversCourseOutcome(po, ac);
+        }
     }
 }

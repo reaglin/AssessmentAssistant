@@ -452,6 +452,21 @@ namespace AssessmentAssistant.Data
             catch (Exception ex) { return null; }
             return null;
         }
+
+        public string CoversCourseOutcome(ProgramOutcome po, AcademicCourse ac)
+        {
+            string output = "";
+            List<CourseOutcome> outcomes = new List<CourseOutcome>();
+            outcomes = this.GetCourseOutcomes(ac.AcademicCourseId, ac.MeasurementPeriod);
+
+            foreach (var outcome in outcomes) {
+                if (outcome.ProgramOutcomeNumber == po.OutcomeNumber) 
+                    output += outcome.OutcomeNumber.ToString() + " - " + outcome.OutcomeStatement + "\n";
+            }
+
+            return output;
+        }
+  
         #endregion
 
         #region "Methods to Copy Program, Course, Outcomes"

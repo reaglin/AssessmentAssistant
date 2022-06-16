@@ -5,21 +5,74 @@
     ViewData["Title"] = "CourseToProgramOutcomeMap";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
+<style>
+#outcomes {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
+#outcomes td, #outcomes th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#outcomes tr:nth-child(even){background-color: #f2f2f2;}
+
+#outcomes tr:hover {background-color: #ddd;}
+
+#outcomes th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
 <h4>Course To Program Outcome Map @Html.DisplayFor(model => model.AcademicProgram.ProgramTitle)</h4>
 
 <div>
-    <h4>Academic Program</h4>
-    <table>
+    <table id="outcomes">
         <thead>
-            <td>Course</td>
+            <tr>
+            <td><b>Course</b></td>
             @foreach(var item in @Model.ProgramOutcomes)
-            {<td>
+            {             
+                <td>
+                <div title="@item.OutcomeStatement">
                 @item.OutcomeNumber
+                </div>
              </td>
             }
+            </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+            @foreach(var course in @Model.AcademicCourses)
+            {
+            <tr>
+            <td><b>@course.CourseTitle</b></td>
+            @foreach(var outcome in @Model.ProgramOutcomes)
+            {
+                        <td>
+                            @{
+                                var fill = Model.FillCell(outcome, course); 
+                                @:<div title="@fill">
+                                if (fill == "")
+                                    {
+                                        @:
+                                    }
+                                    else
+                                    {
+                                        @: X
+                                    }
+                                    @: </div>
+                                }
+                   
+             </td>
+            }
+            </tr>
+            }
+        </tbody>
     </table>
 
     <hr />

@@ -22,9 +22,8 @@ program will also make a copy of all associated courses and course and program o
                 @Html.DisplayNameFor(model => model.AcademicPrograms[0].ProgramTitle)
             </th>
             <th>Measurement Period</th>
-            <th>Edit Program</th>
             <th>Add Information</th>
-            <th>Available Reports</th>
+            <th>Edit Program</th>
             <th>Copy Program</th>
 
         </tr>
@@ -39,13 +38,10 @@ program will also make a copy of all associated courses and course and program o
                 @Html.DisplayFor(modelItem => item.MeasurementPeriod)
             </td>
             <td>
+                <a asp-page="./Details" asp-route-id="@item.AcademicProgramId">Details (Courses, Outcomes, Reports)</a>
+            </td>
+            <td>
                 <a asp-page="./Edit" asp-route-id="@item.AcademicProgramId">Edit Academic Program</a>                
-            </td>
-            <td>
-                <a asp-page="./Details" asp-route-id="@item.AcademicProgramId">Details (Courses and Outcomes)</a>
-            </td>
-            <td>
-                <p><a asp-page="./Reports" asp-route-id="@item.AcademicProgramId">Available Reports</a></p>
             </td>
             <td>
                 <p><a asp-page="./Copy" asp-route-id="@item.AcademicProgramId">Copy Program to New Measurement Period</a></p>
