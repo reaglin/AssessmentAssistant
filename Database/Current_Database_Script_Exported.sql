@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [aspnet-AssessmentAssistant-53bc9b9d-9d6a-45d4-8429-2a2761773502]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Database [aspnet-AssessmentAssistant-53bc9b9d-9d6a-45d4-8429-2a2761773502]    Script Date: 6/16/2022 11:30:03 AM ******/
 CREATE DATABASE [aspnet-AssessmentAssistant-53bc9b9d-9d6a-45d4-8429-2a2761773502]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -80,7 +80,7 @@ ALTER DATABASE [aspnet-AssessmentAssistant-53bc9b9d-9d6a-45d4-8429-2a2761773502]
 GO
 USE [aspnet-AssessmentAssistant-53bc9b9d-9d6a-45d4-8429-2a2761773502]
 GO
-/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -94,7 +94,7 @@ CREATE TABLE [dbo].[__EFMigrationsHistory](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AcademicCourses]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Table [dbo].[AcademicCourses]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -114,7 +114,7 @@ CREATE TABLE [dbo].[AcademicCourses](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AcademicPrograms]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Table [dbo].[AcademicPrograms]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -132,7 +132,7 @@ CREATE TABLE [dbo].[AcademicPrograms](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetRoleClaims]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Table [dbo].[AspNetRoleClaims]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -148,7 +148,7 @@ CREATE TABLE [dbo].[AspNetRoleClaims](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -164,7 +164,7 @@ CREATE TABLE [dbo].[AspNetRoles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -180,7 +180,7 @@ CREATE TABLE [dbo].[AspNetUserClaims](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -197,7 +197,7 @@ CREATE TABLE [dbo].[AspNetUserLogins](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -212,7 +212,7 @@ CREATE TABLE [dbo].[AspNetUserRoles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -241,7 +241,7 @@ CREATE TABLE [dbo].[AspNetUsers](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUserTokens]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Table [dbo].[AspNetUserTokens]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -259,7 +259,7 @@ CREATE TABLE [dbo].[AspNetUserTokens](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CourseOfferings]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Table [dbo].[CourseOfferings]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -288,7 +288,7 @@ CREATE TABLE [dbo].[CourseOfferings](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CourseOutcomes]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Table [dbo].[CourseOutcomes]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -309,7 +309,7 @@ CREATE TABLE [dbo].[CourseOutcomes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Enumerations]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Table [dbo].[Enumerations]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -326,7 +326,7 @@ CREATE TABLE [dbo].[Enumerations](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MeasurementsPeriods]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Table [dbo].[MeasurementsPeriods]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -339,14 +339,14 @@ CREATE TABLE [dbo].[MeasurementsPeriods](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[OutcomeMeasures]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Table [dbo].[OutcomeMeasures]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[OutcomeMeasures](
 	[OutcomeMeasureId] [bigint] IDENTITY(1,1) NOT NULL,
-	[CourseOutcomeNumber] [bigint] NOT NULL,
+	[CourseOutcomeNumber] [int] NOT NULL,
 	[AssessmentType] [nvarchar](max) NULL,
 	[MeasurementStatement] [nvarchar](max) NULL,
 	[ThresholdValue] [int] NULL,
@@ -362,7 +362,7 @@ CREATE TABLE [dbo].[OutcomeMeasures](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ProgramOutcomes]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Table [dbo].[ProgramOutcomes]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -381,7 +381,7 @@ CREATE TABLE [dbo].[ProgramOutcomes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Semesters]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Table [dbo].[Semesters]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -394,7 +394,7 @@ CREATE TABLE [dbo].[Semesters](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserSettings]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Table [dbo].[UserSettings]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -410,7 +410,7 @@ CREATE TABLE [dbo].[UserSettings](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Index [IX_AcademicCourses_AcademicProgramId]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Index [IX_AcademicCourses_AcademicProgramId]    Script Date: 6/16/2022 11:30:03 AM ******/
 CREATE NONCLUSTERED INDEX [IX_AcademicCourses_AcademicProgramId] ON [dbo].[AcademicCourses]
 (
 	[AcademicProgramId] ASC
@@ -418,7 +418,7 @@ CREATE NONCLUSTERED INDEX [IX_AcademicCourses_AcademicProgramId] ON [dbo].[Acade
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_AspNetRoleClaims_RoleId]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Index [IX_AspNetRoleClaims_RoleId]    Script Date: 6/16/2022 11:30:03 AM ******/
 CREATE NONCLUSTERED INDEX [IX_AspNetRoleClaims_RoleId] ON [dbo].[AspNetRoleClaims]
 (
 	[RoleId] ASC
@@ -426,7 +426,7 @@ CREATE NONCLUSTERED INDEX [IX_AspNetRoleClaims_RoleId] ON [dbo].[AspNetRoleClaim
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [RoleNameIndex]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Index [RoleNameIndex]    Script Date: 6/16/2022 11:30:03 AM ******/
 CREATE UNIQUE NONCLUSTERED INDEX [RoleNameIndex] ON [dbo].[AspNetRoles]
 (
 	[NormalizedName] ASC
@@ -436,7 +436,7 @@ WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNOR
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_AspNetUserClaims_UserId]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Index [IX_AspNetUserClaims_UserId]    Script Date: 6/16/2022 11:30:03 AM ******/
 CREATE NONCLUSTERED INDEX [IX_AspNetUserClaims_UserId] ON [dbo].[AspNetUserClaims]
 (
 	[UserId] ASC
@@ -444,7 +444,7 @@ CREATE NONCLUSTERED INDEX [IX_AspNetUserClaims_UserId] ON [dbo].[AspNetUserClaim
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_AspNetUserLogins_UserId]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Index [IX_AspNetUserLogins_UserId]    Script Date: 6/16/2022 11:30:03 AM ******/
 CREATE NONCLUSTERED INDEX [IX_AspNetUserLogins_UserId] ON [dbo].[AspNetUserLogins]
 (
 	[UserId] ASC
@@ -452,7 +452,7 @@ CREATE NONCLUSTERED INDEX [IX_AspNetUserLogins_UserId] ON [dbo].[AspNetUserLogin
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_AspNetUserRoles_RoleId]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Index [IX_AspNetUserRoles_RoleId]    Script Date: 6/16/2022 11:30:03 AM ******/
 CREATE NONCLUSTERED INDEX [IX_AspNetUserRoles_RoleId] ON [dbo].[AspNetUserRoles]
 (
 	[RoleId] ASC
@@ -460,7 +460,7 @@ CREATE NONCLUSTERED INDEX [IX_AspNetUserRoles_RoleId] ON [dbo].[AspNetUserRoles]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [EmailIndex]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Index [EmailIndex]    Script Date: 6/16/2022 11:30:03 AM ******/
 CREATE NONCLUSTERED INDEX [EmailIndex] ON [dbo].[AspNetUsers]
 (
 	[NormalizedEmail] ASC
@@ -468,7 +468,7 @@ CREATE NONCLUSTERED INDEX [EmailIndex] ON [dbo].[AspNetUsers]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [UserNameIndex]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Index [UserNameIndex]    Script Date: 6/16/2022 11:30:03 AM ******/
 CREATE UNIQUE NONCLUSTERED INDEX [UserNameIndex] ON [dbo].[AspNetUsers]
 (
 	[NormalizedUserName] ASC
@@ -476,31 +476,19 @@ CREATE UNIQUE NONCLUSTERED INDEX [UserNameIndex] ON [dbo].[AspNetUsers]
 WHERE ([NormalizedUserName] IS NOT NULL)
 WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_CourseOfferings_AcademicCourseId]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Index [IX_CourseOfferings_AcademicCourseId]    Script Date: 6/16/2022 11:30:03 AM ******/
 CREATE NONCLUSTERED INDEX [IX_CourseOfferings_AcademicCourseId] ON [dbo].[CourseOfferings]
 (
 	[AcademicCourseId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_CourseOutcomes_AcademicCourseId]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Index [IX_CourseOutcomes_AcademicCourseId]    Script Date: 6/16/2022 11:30:03 AM ******/
 CREATE NONCLUSTERED INDEX [IX_CourseOutcomes_AcademicCourseId] ON [dbo].[CourseOutcomes]
 (
 	[AcademicCourseId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_OutcomeMeasures_CourseOfferingId]    Script Date: 6/9/2022 5:40:28 PM ******/
-CREATE NONCLUSTERED INDEX [IX_OutcomeMeasures_CourseOfferingId] ON [dbo].[OutcomeMeasures]
-(
-	[CourseOfferingId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-GO
-/****** Object:  Index [IX_OutcomeMeasures_CourseOutcomeId]    Script Date: 6/9/2022 5:40:28 PM ******/
-CREATE NONCLUSTERED INDEX [IX_OutcomeMeasures_CourseOutcomeId] ON [dbo].[OutcomeMeasures]
-(
-	[CourseOutcomeNumber] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-GO
-/****** Object:  Index [IX_ProgramOutcomes_AcademicProgramId]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  Index [IX_ProgramOutcomes_AcademicProgramId]    Script Date: 6/16/2022 11:30:03 AM ******/
 CREATE NONCLUSTERED INDEX [IX_ProgramOutcomes_AcademicProgramId] ON [dbo].[ProgramOutcomes]
 (
 	[AcademicProgramId] ASC
@@ -573,7 +561,7 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[ProgramOutcomes] CHECK CONSTRAINT [FK_ProgramOutcomes_AcademicPrograms_AcademicProgramId]
 GO
-/****** Object:  StoredProcedure [dbo].[spCopyAcademicCourse]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  StoredProcedure [dbo].[spCopyAcademicCourse]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -616,11 +604,12 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [dbo].[spCopyAcademicProgram]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  StoredProcedure [dbo].[spCopyAcademicProgram]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 
 
@@ -631,6 +620,15 @@ CREATE PROCEDURE [dbo].[spCopyAcademicProgram]
 
 AS
 BEGIN
+
+DECLARE @MeasureCount INT
+SELECT @MeasureCount - Count(*) FROM MeasurementsPeriods 
+  WHERE MeasurementPeriod = @ToMeasurementPeriod
+
+IF (@MeasureCount = 0)
+BEGIN
+  INSERT INTO MeasurementsPeriods VALUES (@ToMeasurementPeriod)
+END
 
 /* Copies a new version of the Academic Course with an updated measurement period
    Also makes copies of all the associated outcomes.
@@ -658,7 +656,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [dbo].[spCopyCourse]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  StoredProcedure [dbo].[spCopyCourse]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -700,7 +698,7 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [dbo].[spCopyCourseOutcome]    Script Date: 6/9/2022 5:40:28 PM ******/
+/****** Object:  StoredProcedure [dbo].[spCopyCourseOutcome]    Script Date: 6/16/2022 11:30:03 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON

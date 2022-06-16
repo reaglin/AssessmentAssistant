@@ -27,10 +27,7 @@ namespace AssessmentAssistant.Pages
         public IEnumerable<AssessmentAssistant.Models.AcademicCourse> courses { get; set; }
 
         public IEnumerable<AssessmentAssistant.Models.AcademicProgram> programs { get; set; }
-
-//        public string MeasurementPeriod;
-        public string UserSettingsId;
-
+        
         public void OnGet()
         {
             // Displayed here (upon login) - will be any programs or course that the user

@@ -39,17 +39,16 @@ namespace AssessmentAssistant.Pages.AcademicProgram
                 return NotFound();
             }
 
-
+            measurementperiod = AcademicProgram.MeasurementPeriod;
+            UserSettingsId = _context.GetUserSettingsId(User.Identity.Name); 
 
             // Explicit Loading of Associated Courses
             // https://docs.microsoft.com/en-us/aspnet/core/data/ef-rp/read-related-data?view=aspnetcore-6.0&tabs=visual-studio
             AcademicCourses = new List<AssessmentAssistant.Models.AcademicCourse>();
-            
+
             // Load the courses
-            _context.AcademicCourses
-                .Where(c => c.AcademicProgramId == AcademicProgram.AcademicProgramId)
-                .Where(c => c.MeasurementPeriod == AcademicProgram.MeasurementPeriod)
-                .Load();
+            _context.GetAcademicCourses(programid, measurementperiod);
+
             if (AcademicProgram.AcademicCourses != null)
             {
                 foreach (Models.AcademicCourse c in AcademicProgram.AcademicCourses)
@@ -60,22 +59,17 @@ namespace AssessmentAssistant.Pages.AcademicProgram
 
             // Explicit Loading of Program Outcomes
             // https://docs.microsoft.com/en-us/aspnet/core/data/ef-rp/read-related-data?view=aspnetcore-6.0&tabs=visual-studio
-            ProgramOutcomes = new List<AssessmentAssistant.Models.ProgramOutcome>();
 
             // Load the outcomes for the academic program
-            _context.ProgramOutcomes
-                .Where(po => po.AcademicProgramId == AcademicProgram.AcademicProgramId)
-                .Where(po => po.MeasurementPeriod == AcademicProgram.MeasurementPeriod)
-                .OrderBy(po => po.OutcomeNumber)
-                .Load();
+            ProgramOutcomes = _context.GetProgramOutcomes(AcademicProgram.AcademicProgramId, AcademicProgram.MeasurementPeriod);
 
-            if (AcademicProgram.ProgramOutcomes != null)
-            {
-                foreach (Models.ProgramOutcome po in AcademicProgram.ProgramOutcomes)
-                {
-                    ProgramOutcomes.Add(po);
-                }
-            }
+            //if (AcademicProgram.ProgramOutcomes != null)
+            //{
+            //    foreach (Models.ProgramOutcome po in AcademicProgram.ProgramOutcomes)
+            //    {
+            //        ProgramOutcomes.Add(po);
+            //    }
+            //}
             return Page();
         }
     }

@@ -176,27 +176,27 @@ namespace AssessmentAssistant.Data
             return ApplicationUsersList;
         }
 
-        public CourseOutcome GetCourseOutcome(long? id)
+        public CourseOutcome GetCourseOutcome(long? courseoutcomeid)
         {
-            if (id == null) return null;
+            if (courseoutcomeid == null) return null;
 
             CourseOutcome outcome = this.CourseOutcomes
-                .Where(s => s.CourseOutcomeId == id)
+                .Where(s => s.CourseOutcomeId == courseoutcomeid)
                 .FirstOrDefault();
 
             if (outcome == null) return null;
             return outcome;
         }
 
-        public List<ProgramOutcome> GetProgramOutcomes(long? id, string mp = "")
+        public List<ProgramOutcome> GetProgramOutcomes(long? programid, string mp = "")
         {
             // All program outcomes for a program
 
-            if (id == null) return new List<ProgramOutcome>();
+            if (programid == null) return new List<ProgramOutcome>();
 
             if (mp == "") { 
                 List<ProgramOutcome> outcomes = this.ProgramOutcomes
-                    .Where(s => s.AcademicProgramId == id)
+                    .Where(s => s.AcademicProgramId == programid)
                     .OrderBy(s => s.OutcomeNumber)
                     .ToList();
                 return outcomes;
@@ -204,7 +204,7 @@ namespace AssessmentAssistant.Data
             else
             {
                 List<ProgramOutcome> outcomes = this.ProgramOutcomes
-                    .Where(s => s.AcademicProgramId == id)
+                    .Where(s => s.AcademicProgramId == programid)
                     .Where(s => s.MeasurementPeriod == mp)
                     .OrderBy(s => s.OutcomeNumber)
                     .ToList();
@@ -213,21 +213,21 @@ namespace AssessmentAssistant.Data
             return new List<ProgramOutcome>();
 
         }
-        public List<CourseOutcome> GetCourseOutcomes(long? id, string mp = "")
+        public List<CourseOutcome> GetCourseOutcomes(long? courseid, string mp = "")
         {
             // All Course outcomes for a course
 
-            if (id == null) return new List<CourseOutcome>();
+            if (courseid == null) return new List<CourseOutcome>();
             if (mp == "") { 
                 List<CourseOutcome> outcomes = this.CourseOutcomes
-                    .Where(s => s.AcademicCourseId == id)
+                    .Where(s => s.AcademicCourseId == courseid)
                     .ToList();
                 return outcomes;
             }
             else
             {
                 List<CourseOutcome> outcomes = this.CourseOutcomes
-                    .Where(s => s.AcademicCourseId == id)
+                    .Where(s => s.AcademicCourseId == courseid)
                     .Where(s => s.MeasurementPeriod == mp)
                     .ToList();
                 return outcomes;
@@ -236,22 +236,22 @@ namespace AssessmentAssistant.Data
             return new List<CourseOutcome>(); ;
         }
 
-        public List<AcademicCourse> GetAcademicCourses(long? id, string mp = "")
+        public List<AcademicCourse> GetAcademicCourses(long? programid, string mp = "")
         {
             // All Academic Courses for a Program
 
-            if (id == null) return new List<AcademicCourse>();
+            if (programid == null) return new List<AcademicCourse>();
 
             if (mp == "") { 
                 List<AcademicCourse> courses = this.AcademicCourses
-                    .Where(s => s.AcademicProgramId == id)
+                    .Where(s => s.AcademicProgramId == programid)
                     .ToList();
                 return courses;
             }
             else
             {
                 List<AcademicCourse> courses = this.AcademicCourses
-                    .Where(s => s.AcademicProgramId == id)
+                    .Where(s => s.AcademicProgramId == programid)
                     .Where(s => s.MeasurementPeriod == mp)
                     .ToList();
                 return courses;

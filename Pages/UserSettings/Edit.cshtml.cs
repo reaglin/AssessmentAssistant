@@ -13,9 +13,6 @@ namespace AssessmentAssistant.Pages.UserSettings
 {
     public class EditModel : AAPageModel
     {
-        public List<SelectListItem> MeasurementPeriodList { get; set; }
-        public List<SelectListItem> AcademicProgramsList { get; set; }
-
         public EditModel(AssessmentAssistant.Data.ApplicationDbContext context)
         {
             _context = context;
@@ -36,7 +33,10 @@ namespace AssessmentAssistant.Pages.UserSettings
             {
                 return NotFound();
             }
+
             UserSettings = usersettings;
+            MeasurementPeriodList = _context.GetMeasurementPeriodsList();
+
             return Page();
         }
 
@@ -67,7 +67,7 @@ namespace AssessmentAssistant.Pages.UserSettings
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("../Index");
         }
 
         private bool UserSettingsExists(long? id)

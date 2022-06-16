@@ -34,6 +34,7 @@ namespace AssessmentAssistant.Pages
         public long? programid;
         public long? offeringid;
         public string measurementperiod = "";
+        public string UserSettingsId;
         public string UserId()
         {
             return _context.UserId(User);

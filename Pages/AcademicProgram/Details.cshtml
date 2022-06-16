@@ -25,16 +25,17 @@
 
 </div>
 <hr/>
-<h2> Academic Courses for @Html.DisplayFor(model => model.AcademicProgram.ProgramTitle) (@Html.DisplayFor(model => model.AcademicProgram.MeasurementPeriod))</h2>
-<div>
+<h4> Academic Courses for @Html.DisplayFor(model => model.AcademicProgram.ProgramTitle) (@Html.DisplayFor(model => model.AcademicProgram.MeasurementPeriod)
+     <a href="../UserSettings/Edit?id=@Model.UserSettingsId">Change</a>)</h4>
+
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.AcademicProgram.AcademicCourses)
             </th>
-            <th>Edit Course</th>
-            <th>Course Details and Information</th>
+            <th>Edit This Course</th>
+            <th>Course Details Page (Outcomes, Measures)</th>
         </tr>
     </thead>
     <tbody>
@@ -47,10 +48,10 @@
                             @Html.DisplayFor(modelItem => item.CourseTitle)
                         </td>
                         <td>
-                            <a asp-page="../AcademicCourse/Edit" asp-route-id="@item.AcademicCourseId">Edit</a>                
+                            <a asp-page="../AcademicCourse/Edit" asp-route-id="@item.AcademicCourseId">Edit Course</a>                
                         </td>
                         <td>
-                            <a asp-page="../AcademicCourse/Details" asp-route-id="@item.AcademicCourseId">Details</a>
+                            <a asp-page="../AcademicCourse/Details" asp-route-id="@item.AcademicCourseId">Course Details Page</a>
                         </td>
                     </tr>
                 }
@@ -113,6 +114,12 @@
         outcomes for the same period. This is simply the mapping of program to course outcomes.
     </p>
     <br/>
-
+        <a href="./CourseToProgramOutcomeMap?id=@Model.programid">Course to Program Outcome Map</a>
+        <p>Counts the number of associated outcomes that go with each program outcome. Puts the results
+            in a matrix table.
+        </p>
+    <p>
+    </p>
+    <br/>
 </div>
 </div>

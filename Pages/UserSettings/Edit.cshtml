@@ -25,11 +25,20 @@
                 <input asp-for="UserSettings.MeasurementPeriod" class="form-control" />
                 <span asp-validation-for="UserSettings.MeasurementPeriod" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <p>Available Measurement Periods</p>
+            <ul>
+            @foreach(var mp in @Model.MeasurementPeriodList)
+            {
+                <li>@mp.Text</li>
+            }
+            </ul>
+            
+            <div class="form-group" hidden>
                 <label asp-for="UserSettings.AcademicProgramId" class="control-label"></label>
                 <input asp-for="UserSettings.AcademicProgramId" class="form-control" />
                 <span asp-validation-for="UserSettings.AcademicProgramId" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
