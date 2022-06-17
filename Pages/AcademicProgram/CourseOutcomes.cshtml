@@ -1,0 +1,23 @@
+﻿@page
+@model AssessmentAssistant.Pages.AcademicProgram.CourseOutcomesModel
+
+@{
+    ViewData["Title"] = "CourseOutcomes";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<h4>Course Outcome Report for @Model.AcademicProgram.ProgramTitle</h4>
+
+@foreach(var course in @Model.AcademicCourses)
+{
+    <p>@course.CourseTitle @course.CourseDescription</p>
+    <ul>
+    @foreach(var outcome in @Model.GetCourseOutcomes(course.AcademicCourseId))
+    {
+        <li>@outcome.OutcomeNumber - @outcome.OutcomeStatement</li>
+    }
+    </ul>
+}
+
+<div>
+    <a href="./Details?id=@Model.AcademicProgram.AcademicProgramId">Back to Program</a>
+</div>

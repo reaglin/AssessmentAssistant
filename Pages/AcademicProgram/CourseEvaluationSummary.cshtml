@@ -1,0 +1,48 @@
+﻿@page
+@model AssessmentAssistant.Pages.AcademicProgram.CourseEvaluationSummary
+
+@{
+    ViewData["Title"] = "CourseOutcomes";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding-left: 10px
+}
+</style>
+
+<h4>Course Outcome Report for @Model.AcademicProgram.ProgramTitle</h4>
+
+@foreach(var course in @Model.AcademicCourses)
+{
+    <hr/>
+    <p>@course.CourseTitle @course.CourseDescription</p>
+    <table>
+    @foreach(var offering in @Model.GetCourseOfferings(course.AcademicCourseId))
+    {<tr>
+        <td colspan="2">
+           Offering: @offering.SectionNumber @offering.Semester (@offering.MeasurementPeriod)
+        </td>
+    </tr>
+     <tr>
+        <td>Issues</td>
+        <td>@offering.IssuesFaced</td>
+     </tr>
+     <tr>
+        <td>Improvements</td>
+        <td>@offering.ProposedImprovements</td>
+     </tr>
+     <tr>
+        <td>Results</td>
+        <td>@offering.ResultsOfImprovements</td>
+     </tr>
+    }
+
+    </table>
+}
+<br/>
+<div>
+    <a href="./Details?id=@Model.AcademicProgram.AcademicProgramId">Back to Academic Program</a>
+</div>
