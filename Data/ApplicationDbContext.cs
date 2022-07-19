@@ -614,6 +614,12 @@ namespace AssessmentAssistant.Data
 
             return true;
         }
+
+        public DbSet<AssessmentAssistant.Models.CourseReviewStandards>? CourseReviewStandards { get; set; }
+
+        public DbSet<AssessmentAssistant.Models.CourseReview>? CourseReview { get; set; }
+
+        public DbSet<AssessmentAssistant.Models.CourseStandardsReview>? CourseStandardsReview { get; set; }
         #endregion
 
     }

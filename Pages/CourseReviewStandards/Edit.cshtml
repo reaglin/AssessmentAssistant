@@ -1,0 +1,76 @@
+﻿@page
+@model AssessmentAssistant.Pages.CourseReviewStandards.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>CourseReviewStandards</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CourseReviewStandards.CourseReviewStandardsId" />
+            <div class="form-group">
+                <label asp-for="CourseReviewStandards.GeneralStandardVersion" class="control-label"></label>
+                <input asp-for="CourseReviewStandards.GeneralStandardVersion" class="form-control" />
+                <span asp-validation-for="CourseReviewStandards.GeneralStandardVersion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseReviewStandards.GeneralStandardNumber" class="control-label"></label>
+                <input asp-for="CourseReviewStandards.GeneralStandardNumber" class="form-control" />
+                <span asp-validation-for="CourseReviewStandards.GeneralStandardNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseReviewStandards.GeneralStandard" class="control-label"></label>
+                <input asp-for="CourseReviewStandards.GeneralStandard" class="form-control" />
+                <span asp-validation-for="CourseReviewStandards.GeneralStandard" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseReviewStandards.ReviewStandardNumber" class="control-label"></label>
+                <input asp-for="CourseReviewStandards.ReviewStandardNumber" class="form-control" />
+                <span asp-validation-for="CourseReviewStandards.ReviewStandardNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseReviewStandards.ReviewStandard" class="control-label"></label>
+                <input asp-for="CourseReviewStandards.ReviewStandard" class="form-control" />
+                <span asp-validation-for="CourseReviewStandards.ReviewStandard" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseReviewStandards.ReviewStandardPoints" class="control-label"></label>
+                <input asp-for="CourseReviewStandards.ReviewStandardPoints" class="form-control" />
+                <span asp-validation-for="CourseReviewStandards.ReviewStandardPoints" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseReviewStandards.MeasurementPeriod" class="control-label"></label>
+                <input asp-for="CourseReviewStandards.MeasurementPeriod" class="form-control" />
+                <span asp-validation-for="CourseReviewStandards.MeasurementPeriod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseReviewStandards.EnteredByUserName" class="control-label"></label>
+                <input asp-for="CourseReviewStandards.EnteredByUserName" class="form-control" />
+                <span asp-validation-for="CourseReviewStandards.EnteredByUserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseReviewStandards.RecordOwnerUserName" class="control-label"></label>
+                <input asp-for="CourseReviewStandards.RecordOwnerUserName" class="form-control" />
+                <span asp-validation-for="CourseReviewStandards.RecordOwnerUserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

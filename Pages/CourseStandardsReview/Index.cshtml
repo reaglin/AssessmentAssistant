@@ -1,0 +1,79 @@
+﻿@page
+@model AssessmentAssistant.Pages.CourseStandardsReview.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseStandardsReview[0].ReviewStatement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseStandardsReview[0].ReviewResponse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseStandardsReview[0].PointsAssigned)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseStandardsReview[0].CourseReviewStandard)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseStandardsReview[0].ReviewedByUserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseStandardsReview[0].MeasurementPeriod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseStandardsReview[0].EnteredByUserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseStandardsReview[0].RecordOwnerUserName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.CourseStandardsReview) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReviewStatement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReviewResponse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PointsAssigned)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseReviewStandard.CourseReviewStandardsId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReviewedByUserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MeasurementPeriod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnteredByUserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RecordOwnerUserName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.CourseStandardsReviewId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.CourseStandardsReviewId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.CourseStandardsReviewId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

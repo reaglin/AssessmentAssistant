@@ -1,0 +1,71 @@
+﻿@page
+@model AssessmentAssistant.Pages.CourseStandardsReview.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>CourseStandardsReview</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseStandardsReview.ReviewStatement)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CourseStandardsReview.ReviewStatement)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseStandardsReview.ReviewResponse)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CourseStandardsReview.ReviewResponse)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseStandardsReview.PointsAssigned)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CourseStandardsReview.PointsAssigned)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseStandardsReview.CourseReviewStandard)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CourseStandardsReview.CourseReviewStandard.CourseReviewStandardsId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseStandardsReview.ReviewedByUserName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CourseStandardsReview.ReviewedByUserName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseStandardsReview.MeasurementPeriod)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CourseStandardsReview.MeasurementPeriod)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseStandardsReview.EnteredByUserName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CourseStandardsReview.EnteredByUserName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseStandardsReview.RecordOwnerUserName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CourseStandardsReview.RecordOwnerUserName)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="CourseStandardsReview.CourseStandardsReviewId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

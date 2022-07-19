@@ -1,0 +1,60 @@
+﻿@page
+@model AssessmentAssistant.Pages.CourseReview.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>CourseReview</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CourseReview.CourseOfferingReviewedId" class="control-label"></label>
+                <input asp-for="CourseReview.CourseOfferingReviewedId" class="form-control" />
+                <span asp-validation-for="CourseReview.CourseOfferingReviewedId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseReview.CourseReviewStatement" class="control-label"></label>
+                <input asp-for="CourseReview.CourseReviewStatement" class="form-control" />
+                <span asp-validation-for="CourseReview.CourseReviewStatement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseReview.ReviewedByUserName" class="control-label"></label>
+                <input asp-for="CourseReview.ReviewedByUserName" class="form-control" />
+                <span asp-validation-for="CourseReview.ReviewedByUserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseReview.MeasurementPeriod" class="control-label"></label>
+                <input asp-for="CourseReview.MeasurementPeriod" class="form-control" />
+                <span asp-validation-for="CourseReview.MeasurementPeriod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseReview.EnteredByUserName" class="control-label"></label>
+                <input asp-for="CourseReview.EnteredByUserName" class="form-control" />
+                <span asp-validation-for="CourseReview.EnteredByUserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseReview.RecordOwnerUserName" class="control-label"></label>
+                <input asp-for="CourseReview.RecordOwnerUserName" class="form-control" />
+                <span asp-validation-for="CourseReview.RecordOwnerUserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
