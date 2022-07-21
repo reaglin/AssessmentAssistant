@@ -32,7 +32,7 @@ namespace AssessmentAssistant.Pages.AcademicProgram
             // Get all the elements of the report 
             ProgramOutcomes = _context.GetProgramOutcomes(programid, measurementperiod);
 
-            Courses = _context.GetAcademicCourses(programid, measurementperiod);
+            Courses = _context.GetAcademicCoursesForProgram(programid, measurementperiod);
             
             CourseOutcomes = new Dictionary<string, List<Models.CourseOutcome>>();
             

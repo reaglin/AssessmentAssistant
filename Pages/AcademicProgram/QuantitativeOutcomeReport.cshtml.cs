@@ -10,12 +10,19 @@ using AssessmentAssistant.Models;
 
 namespace AssessmentAssistant.Pages.AcademicProgram
 {
-    public class CourseToProgramOutcomeMapModel : AAPageModel
+    public class QuantitativeOutcomeReport : AAPageModel
     {
-        public List<AssessmentAssistant.Models.AcademicCourse> AcademicCourses { get; set; }
+        public List<AssessmentAssistant.Models.AcademicCourse>? AcademicCourses { get; set; }
 
-        public List<AssessmentAssistant.Models.ProgramOutcome> ProgramOutcomes { get; set; }    
-        public CourseToProgramOutcomeMapModel(AssessmentAssistant.Data.ApplicationDbContext context)
+        public List<AssessmentAssistant.Models.ProgramOutcome>? ProgramOutcomes { get; set; }
+
+        public List<AssessmentAssistant.Models.CourseOutcome>? CourseOutcomes { get; set; }
+
+        public List<AssessmentAssistant.Models.OutcomeMeasure>? OutcomeMeasures { get; set; }
+
+        public List<MeasuresTable> MeasurementsTable { get; set; }
+
+        public QuantitativeOutcomeReport(AssessmentAssistant.Data.ApplicationDbContext context)
         {
             _context = context;
         }
@@ -41,14 +48,19 @@ namespace AssessmentAssistant.Pages.AcademicProgram
             }
 
             measurementperiod = AcademicProgram.MeasurementPeriod;
-            // Gret all courses for Academic Program
+            // Get all courses for Academic Program
             AcademicCourses = _context.GetAcademicCoursesForProgram(programid, measurementperiod);
-
+            // Get all program outcomes for Academic Program
             ProgramOutcomes = _context.GetProgramOutcomes(programid, measurementperiod);
+            // Get all course outcomes for academic program
+            CourseOutcomes = _context.GetCourseOutcomesForProgram(programid, measurementperiod);
+
+            MeasurementsTable = _context.GetMeasuresTable(programid, measurementperiod);
 
             return Page();
         }
 
+        // 
         public string FillCell(AssessmentAssistant.Models.ProgramOutcome po, AssessmentAssistant.Models.AcademicCourse ac)
         {
             return _context.CoversCourseOutcome(po, ac);

@@ -46,7 +46,7 @@ namespace AssessmentAssistant.Pages.AcademicCourse
 
             CourseOutcomes = _context.GetCourseOutcomes(courseid, measurementperiod);
 
-            OutcomeMeasures = _context.GetOutcomeMeasures(CourseOfferings[0].CourseOfferingId, measurementperiod);
+            OutcomeMeasures = _context.GetOutcomeMeasuresForCourseOffering(CourseOfferings[0].CourseOfferingId, measurementperiod);
 
             MeasurementsDictionary = TablesForReports.FillMeasuresDictionary(measurementperiod, (long)courseid, CourseOutcomes, CourseOfferings, OutcomeMeasures);
             

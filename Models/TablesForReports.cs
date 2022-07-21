@@ -64,9 +64,9 @@
                             dict.Add(outcomeid, new MeasuresTable()
                         {
                             CourseOutcome = outcomeid,
-                            CourseOutcomeNumber = outcome.OutcomeNumber.ToString(),
+                           // CourseOutcomeNumber = outcome.OutcomeNumber(),
                             CourseOutcomeStatement = outcome.OutcomeStatement,
-                            ProgramOutcomeNumber = outcome.ProgramOutcomeNumber.ToString(),
+                            //ProgramOutcomeNumber = outcome.ProgramOutcomeNumber(),
                             MeasurementPeriod = outcome.MeasurementPeriod
                         });
                         
@@ -109,10 +109,11 @@
 
     public class MeasuresTable
     {
+        public string Course { get; set; }
         public string CourseOutcome { get; set; }
-        public string CourseOutcomeNumber { get; set; }
+        public int CourseOutcomeNumber { get; set; }
         public string CourseOutcomeStatement { get; set; }
-        public string ProgramOutcomeNumber { get; set; }
+        public int ProgramOutcomeNumber { get; set; }
         public string AssessmentType { get; set; }
         public string AssessmentMeasure { get; set; }
         public int N { get; set;}
@@ -123,13 +124,18 @@
 
         public void MeasureTable()
         {
+            Course = "";
             CourseOutcome = "";
             CourseOutcomeStatement = "";
-            ProgramOutcomeNumber = "";
+            ProgramOutcomeNumber = 0;
             AssessmentType = "";
             AssessmentMeasure = "";
         }
 
-        
+        public double Calculate()
+        {
+            if (N != 0) Percent_N_Above_Threshold = Math.Round(100.0 * (float)N_AboveThreshold / (float)N, 1);
+            return Percent_N_Above_Threshold;
+        }
     }
 } // End Namespace

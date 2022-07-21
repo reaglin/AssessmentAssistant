@@ -48,7 +48,7 @@ namespace AssessmentAssistant.Pages.CourseOffering
 
         public string NumberMeasures(int co)
         {
-            List<AssessmentAssistant.Models.OutcomeMeasure> om = _context.GetOutcomeMeasures(offeringid, co, measurementperiod);
+            List<AssessmentAssistant.Models.OutcomeMeasure> om = _context.GetOutcomeMeasuresForCourseOfferingAndOutcomeNumber(offeringid, co, measurementperiod);
             return om.Count().ToString();
         }
     }

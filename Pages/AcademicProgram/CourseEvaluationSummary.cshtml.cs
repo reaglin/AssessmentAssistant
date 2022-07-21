@@ -45,7 +45,7 @@ namespace AssessmentAssistant.Pages.AcademicProgram
             measurementperiod = AcademicProgram.MeasurementPeriod;
             // Gret all courses for Academic Program
 
-            AcademicCourses = _context.GetAcademicCourses(programid, measurementperiod);
+            AcademicCourses = _context.GetAcademicCoursesForProgram(programid, measurementperiod);
 
             return Page();
         }

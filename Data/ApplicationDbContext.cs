@@ -236,7 +236,24 @@ namespace AssessmentAssistant.Data
             return new List<CourseOutcome>(); ;
         }
 
-        public List<AcademicCourse> GetAcademicCourses(long? programid, string mp = "")
+        public List<CourseOutcome> GetCourseOutcomesForProgram(long? programid, string mp = "")
+        {
+            List<AcademicCourse> courses = this.GetAcademicCoursesForProgram(programid, mp);
+
+            List<CourseOutcome> outcomes = new List<CourseOutcome>();
+
+            foreach (AcademicCourse course in courses)
+            {
+                var outcomesforcourse = this.GetCourseOutcomes(course.AcademicCourseId, mp);
+                foreach (CourseOutcome outcome in outcomesforcourse)
+                {
+                    outcomes.Add(outcome);
+                }
+            }
+            return outcomes;
+        }
+
+        public List<AcademicCourse> GetAcademicCoursesForProgram(long? programid, string mp = "")
         {
             // All Academic Courses for a Program
 
@@ -260,7 +277,7 @@ namespace AssessmentAssistant.Data
             return new List<AcademicCourse>(); ;
         }
 
-        public List<OutcomeMeasure> GetOutcomeMeasures(long? courseofferingid, int outcomenumber, string mp = "")
+        public List<OutcomeMeasure> GetOutcomeMeasuresForCourseOfferingAndOutcomeNumber(long? courseofferingid, int outcomenumber, string mp = "")
         {
             if (courseofferingid == null) return new List<OutcomeMeasure>();
 
@@ -273,7 +290,7 @@ namespace AssessmentAssistant.Data
             return measures;
         }
 
-        public List<OutcomeMeasure> GetOutcomeMeasures(long? courseofferingid, string mp = "")
+        public List<OutcomeMeasure> GetOutcomeMeasuresForCourseOffering(long? courseofferingid, string mp = "")
         {
             if (courseofferingid == null) return new List<OutcomeMeasure>();
 
@@ -283,6 +300,70 @@ namespace AssessmentAssistant.Data
                 .ToList();
 
             return measures;
+        }
+
+        public List<CourseOffering> GetCourseOfferingsForCourse(long? courseid, string mp = "")
+        {
+            if (courseid == null) return new List<CourseOffering>();
+
+            List<CourseOffering> courses = this.CourseOfferings
+                .Where(s => s.AcademicCourseId == courseid)
+                .ToList();
+
+            return courses;
+        }
+
+        public List<OutcomeMeasure> GetOutcomeMeauresforCourse(long? courseid, string mp = "")
+        {
+            if (courseid != null) return new List<OutcomeMeasure>();
+
+            List<CourseOffering> cos = GetCourseOfferingsForCourse(courseid, mp);
+
+            List<OutcomeMeasure> measures = new List<OutcomeMeasure>();
+
+            foreach (CourseOffering co in cos)
+            {
+                List<OutcomeMeasure> _measures = this.OutcomeMeasures
+                    .Where(s => s.CourseOfferingId == co.CourseOfferingId)
+                    .ToList();
+
+                measures.AddRange(_measures);
+            }
+            
+            return measures;
+        }
+
+
+
+        public List<MeasuresTable> GetMeasuresTable(long? programid, string mp = "")
+        {
+            List<MeasuresTable> MeasureTable = new List<MeasuresTable>();
+
+            List<AcademicCourse> courses = this.GetAcademicCoursesForProgram(programid, mp);
+
+            foreach (AcademicCourse course in courses)
+            {
+                List<CourseOffering> courseofferings = this.GetCourseOfferingsForCourse(course.AcademicCourseId, mp);
+                foreach (CourseOffering offering in courseofferings)
+                { 
+                    List<OutcomeMeasure> outcomeMeasures = this.GetOutcomeMeasuresForCourseOffering(offering.CourseOfferingId, mp);
+                    foreach(OutcomeMeasure outcomeMeasure in outcomeMeasures)
+                    {
+                        MeasuresTable mt = new MeasuresTable();
+                        mt.Course = course.CourseTitle;
+                        mt.CourseOutcomeNumber = (int)outcomeMeasure.CourseOutcomeNumber;
+                        mt.N = (int)outcomeMeasure.NumberMeasured;
+                        mt.N_AboveThreshold = (int)outcomeMeasure.NumberMeetingThreshold;
+                        mt.AssessmentType = outcomeMeasure.AssessmentType;
+                        mt.AssessmentMeasure = outcomeMeasure.MeasurementStatement;
+
+                        mt.Calculate();
+                        MeasureTable.Add(mt);
+                    }
+                }
+            }
+            return MeasureTable;
+
         }
 
         public string GetAcademicProgramTitle(long? AcademicProgramId)
@@ -453,8 +534,10 @@ namespace AssessmentAssistant.Data
             return null;
         }
 
+
         public string CoversCourseOutcome(ProgramOutcome po, AcademicCourse ac)
         {
+            // Answers a string of all course outcome number and statement that cover a program outcome 
             string output = "";
             List<CourseOutcome> outcomes = new List<CourseOutcome>();
             outcomes = this.GetCourseOutcomes(ac.AcademicCourseId, ac.MeasurementPeriod);
@@ -466,6 +549,10 @@ namespace AssessmentAssistant.Data
 
             return output;
         }
+
+        
+
+
   
         #endregion
 
@@ -502,7 +589,7 @@ namespace AssessmentAssistant.Data
             if (NewId == null) { return false; }
 
             // Copy Associated Courses
-            List<AcademicCourse> courses = this.GetAcademicCourses(programid);
+            List<AcademicCourse> courses = this.GetAcademicCoursesForProgram(programid);
             foreach(AcademicCourse course in courses)
             {
                 CopyAcademicCourse(course.AcademicCourseId, NewId, newmp);

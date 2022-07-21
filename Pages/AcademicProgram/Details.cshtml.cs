@@ -47,7 +47,7 @@ namespace AssessmentAssistant.Pages.AcademicProgram
             AcademicCourses = new List<AssessmentAssistant.Models.AcademicCourse>();
 
             // Load the courses
-            _context.GetAcademicCourses(programid, measurementperiod);
+            _context.GetAcademicCoursesForProgram(programid, measurementperiod);
 
             if (AcademicProgram.AcademicCourses != null)
             {
